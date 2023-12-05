@@ -1,11 +1,11 @@
 import React from "react";
-import Login from "./pages/auth/Login";
+import Signup from "./pages/auth/Signup";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Login />
+        <Signup />
       </header>
     </div>
   );
