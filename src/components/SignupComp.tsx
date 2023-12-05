@@ -59,16 +59,25 @@ function SignupComp() {
                                     </div>
                                 </div>
 
+                                {/* agreement checkbox */}
                                 <div className="mb-5 flex flex-row items-start gap-2">
                                     <div>
-                                        <input type="checkbox" name="agreement" id="agree" className='' />
+                                        <input type="checkbox" name="agreement" id="agree" className='h-4 w-4' />
                                     </div>
                                     <div className='text-white font-sf-reg text-xs'>
                                         I acknowledge that i have read and agree to <span className='text-[#FF375F]'>iGospel’s Agreement</span>
                                     </div>
                                 </div>
 
-
+                                {/* newsletter checkbox */}
+                                <div className="mb-5 flex flex-row items-start gap-2">
+                                    <div>
+                                        <input type="checkbox" name="agreement" id="agree" className='h-4 w-4' />
+                                    </div>
+                                    <div className='text-white font-sf-reg text-xs'>
+                                        Sign up  for the latest updates, news, and more about your preferred artists. Be among the first to receive exclusive content.
+                                    </div>
+                                </div>
 
                                 {/* button here */}
                                 <div className='w-full h-10 bg-[#636366] text-[#AEAEB2] font-sf-med text-sm rounded-md flex flex-row items-center justify-center'>
