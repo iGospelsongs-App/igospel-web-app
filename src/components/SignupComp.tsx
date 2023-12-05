@@ -4,6 +4,7 @@ import { FaRegEye } from "react-icons/fa6";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import ggle from '../assets/images/ggle.svg'
 import Footer from './Footer';
+import { Link } from 'react-router-dom'
 
 function SignupComp() {
     const [showPassword, setShowPassword] = useState(false);
@@ -82,6 +83,10 @@ function SignupComp() {
                                 {/* button here */}
                                 <div className='w-full h-10 bg-[#636366] text-[#AEAEB2] font-sf-med text-sm rounded-md flex flex-row items-center justify-center'>
                                     Continue
+                                </div>
+
+                                <div className='mt-1'>
+                                    <Link to='/login' className='text-white font-sf-reg text-xs'>Don't have an account ? <span className='text-[#FF375F]'>Login</span></Link>
                                 </div>
                             </form>
 

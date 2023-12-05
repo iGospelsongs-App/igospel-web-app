@@ -4,6 +4,7 @@ import { FaRegEye } from "react-icons/fa6";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import ggle from '../assets/images/ggle.svg'
 import Footer from './Footer';
+import { Link } from 'react-router-dom'
 
 function LoginComp() {
     const [showPassword, setShowPassword] = useState(false);
@@ -39,15 +40,21 @@ function LoginComp() {
                                 <div className='w-full h-10 bg-[#636366] text-[#AEAEB2] font-sf-med text-sm rounded-md flex flex-row items-center justify-center'>
                                     Continue
                                 </div>
+
+                                <div className='mt-1'>
+                                    <Link to='/signup' className='text-white font-sf-reg text-xs'>Don't have an account ? <span className='text-[#FF375F]'>Signup</span></Link>
+                                </div>
                             </form>
 
-                            <div className='my-7 text-center text-[#ffffffa0] text-sm sf-pro-med'>Or</div>
+                            <div className='my-6 text-center text-[#ffffffa0] text-sm sf-pro-med'>Or</div>
 
                             {/* login with google button */}
                             <div className='w-full h-10 bg-white flex flex-row justify-around items-center rounded-md'>
                                 <div><img src={ggle} alt="" /></div>
                                 <div className='font-sf-med text-sm text-black'>Continue with Google</div>
-                                <div></div>
+                                <div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
