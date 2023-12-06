@@ -37,9 +37,9 @@ function LoginComp() {
                                 </div>
 
                                 {/* button here */}
-                                <div className='w-full h-10 bg-[#636366] text-[#AEAEB2] font-sf-med text-sm rounded-md flex flex-row items-center justify-center'>
+                                <button type="submit" className='w-full h-10 bg-[#636366] text-[#AEAEB2] font-sf-med text-sm rounded-md flex flex-row items-center justify-center'>
                                     Continue
-                                </div>
+                                </button>
 
                                 <div className='mt-1'>
                                     <Link to='/signup' className='text-white font-sf-reg text-xs'>Don't have an account ? <span className='text-[#FF375F]'>Signup</span></Link>
