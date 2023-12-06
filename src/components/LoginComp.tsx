@@ -1,13 +1,55 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import logo from '../assets/images/logo.svg'
 import { FaRegEye } from "react-icons/fa6";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import ggle from '../assets/images/ggle.svg'
 import Footer from './Footer';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios'
+import { AuthContext } from '../context/authContext';
 
 function LoginComp() {
     const [showPassword, setShowPassword] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const authCtx = useContext(AuthContext);
+    const [errorMessage, setErrorMessage] = useState('')
+    const navigate = useNavigate();
+
+    const URL = "https://igospelsongs.onrender.com/user/signin/";
+
+    const handleEmail = (e: any) => {
+        setEmail(e.target.value)
+    }
+
+    const handlePassword = (e: any) => {
+        setPassword(e.target.value)
+    }
+
+    // const handleFormData = (e: any) => {
+    //     e.preventDefault();
+    //     console.log(email, password)
+    // }
+
+    const formValues = {
+        email,
+        password
+    };
+
+    const handleLogin = async (e: any) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post(URL, formValues);
+            authCtx.authenticate(response.data.token);
+            setEmail('');
+            setPassword('');
+            navigate('/')
+            console.log(response)
+        } catch (error: any) {
+            console.log(error.response.data.Error[0]);
+            setErrorMessage(error.response.data.Error[0])
+        }
+    }
 
     return (
         <div className=''>
@@ -20,13 +62,13 @@ function LoginComp() {
                             <form>
                                 <div className='mb-5'>
                                     <label htmlFor="email" className='text-white font-sf-reg text-xs'>Email</label>
-                                    <input type="text" className='w-full mt-2 h-10 bg-transparent border-[1px] border-white px-2 text-white outline-none rounded-md font-sf-reg text-sm' placeholder='Enter your email' />
+                                    <input type="text" value={email} onChange={handleEmail} className='w-full mt-2 h-10 bg-transparent border-[1px] border-white px-2 text-white outline-none rounded-md font-sf-reg text-sm' placeholder='Enter your email' />
                                 </div>
 
                                 <div className='mb-7'>
                                     <label htmlFor="email" className='text-white font-sf-reg text-xs'>Password</label>
                                     <div className='border-[1px] border-white bg-transparent pl-2 mt-2 flex flex-row items-center rounded-md justify-between'>
-                                        <input type={showPassword ? 'text' : 'password'} placeholder='password' className='w-full h-10 bg-transparent flex-1 outline-0 text-white  font-sf-reg text-sm' style={{ borderWidth: '0', outline: 'none' }} />
+                                        <input value={password} onChange={handlePassword} type={showPassword ? 'text' : 'password'} placeholder='password' className='w-full h-10 bg-transparent flex-1 outline-0 text-white  font-sf-reg text-sm' style={{ borderWidth: '0', outline: 'none' }} />
                                         <div className='px-2' onClick={() => setShowPassword(!showPassword)}>
                                             {
                                                 showPassword ? <FaRegEye style={{ color: 'white' }} className='cursor-pointer' /> : <FaRegEyeSlash style={{ color: 'white' }} className='cursor-pointer' />
@@ -37,7 +79,7 @@ function LoginComp() {
                                 </div>
 
                                 {/* button here */}
-                                <button type="submit" className='w-full h-10 bg-[#636366] text-[#AEAEB2] font-sf-med text-sm rounded-md flex flex-row items-center justify-center'>
+                                <button onClick={handleLogin} type="submit" className='w-full h-10 bg-[#636366] text-[#AEAEB2] font-sf-med text-sm rounded-md flex flex-row items-center justify-center'>
                                     Continue
                                 </button>
 

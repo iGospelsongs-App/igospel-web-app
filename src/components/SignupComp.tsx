@@ -6,8 +6,64 @@ import ggle from '../assets/images/ggle.svg'
 import Footer from './Footer';
 import { Link } from 'react-router-dom'
 
+export interface SignupType {
+    cover_image: any;
+    image: any;
+    fullname: string;
+    email: string;
+    username: string;
+    password: string;
+    agreement: boolean;
+    newsletter: boolean;
+}
+
 function SignupComp() {
     const [showPassword, setShowPassword] = useState(false);
+    const [fullname, setFullname] = useState('');
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('')
+    const [agreementChecked, setAgreementChecked] = useState(false);
+    const [newsCheck, setNewsCheck] = useState(false);
+
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const URL = 'https://igospelsongs.onrender.com/user/signup/';
+
+    const handleUsername = (e: any) => {
+        setErrorMessage('')
+        setUsername(e.target.value)
+    }
+
+    const handleFullname = (e: any) => {
+        setErrorMessage('')
+        setFullname(e.target.value)
+    }
+
+    const handleEmail = (e: any) => {
+        setErrorMessage('')
+        setEmail(e.target.value)
+    }
+
+    const handlePassword = (e: any) => {
+        setErrorMessage('')
+        setPassword(e.target.value)
+    }
+
+    const formValue = {
+        cover_image: null,
+        image: null,
+        full_name: fullname,
+        email,
+        username,
+        password,
+        agreement: true,
+        newsletter: newsCheck,
+    }
+
+
 
     return (
         <div className='mt-[100px]'>
