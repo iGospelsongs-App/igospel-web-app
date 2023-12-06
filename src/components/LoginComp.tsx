@@ -84,7 +84,7 @@ function LoginComp() {
                                 </button>
 
                                 <div className='mt-1'>
-                                    <Link to='/signup' className='text-white font-sf-reg text-xs'>Don't have an account ? <span className='text-[#FF375F]'>Signup</span></Link>
+                                    <Link to='/auth/signup' className='text-white font-sf-reg text-xs'>Don't have an account ? <span className='text-[#FF375F]'>Signup</span></Link>
                                 </div>
                             </form>
 
