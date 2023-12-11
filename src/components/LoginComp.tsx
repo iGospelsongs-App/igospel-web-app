@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import logo from '../assets/images/logo.svg'
 import { FaRegEye } from "react-icons/fa6";
 import { FaRegEyeSlash } from "react-icons/fa6";
@@ -7,14 +7,48 @@ import Footer from './Footer';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { AuthContext } from '../context/authContext';
+import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 
 function LoginComp() {
     const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const authCtx = useContext(AuthContext);
-    const [errorMessage, setErrorMessage] = useState('')
+    const [errorMessages, setErrorMessages] = useState('')
     const navigate = useNavigate();
+    const [user, setUser] = useState<any>([]);
+    const [profile, setProfile] = useState<any>([]);
+
+
+    const login = useGoogleLogin({
+        onSuccess: (codeResponse) => setUser(codeResponse),
+        onError: (error) => console.log('Login Failed:', error)
+    });
+
+    useEffect(
+        () => {
+            if (user) {
+                axios
+                    .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
+                        headers: {
+                            Authorization: `Bearer ${user.access_token}`,
+                            Accept: 'application/json'
+                        }
+                    })
+                    .then((res) => {
+                        setProfile(res.data);
+                        console.log(profile)
+                    })
+                    .catch((err) => console.log(err));
+            }
+        },
+        [user]
+    );
+
+    const logOut = () => {
+        googleLogout();
+        setProfile(null);
+    };
 
     const URL = "https://igospelsongs.onrender.com/user/signin/";
 
@@ -47,14 +81,21 @@ function LoginComp() {
             console.log(response)
         } catch (error: any) {
             console.log(error.response.data.Error[0]);
-            setErrorMessage(error.response.data.Error[0])
+            setErrorMessages(error.response.data.Error[0])
         }
     }
 
+    const responseMessage = (response: any) => {
+        console.log(response);
+    };
+    const errorMessage = () => {
+        console.log('there was an error');
+    };
+
     return (
-        <div className=''>
-            <div className='relative'>
-                <div className='w-full flex flex-col items-center  h-screen justify-center'>
+        <div className='mt-[100px]'>
+            <div className=''>
+                <div className='w-full flex flex-col items-center h-full justify-center'>
                     <div><img src={logo} className='h-10 w-[200px] mb-6' alt="" /></div>
                     <div className='bg-[#0E0E0F] border-[1px] border-[#1e1e1e49] w-[425px] rounded-2xl px-4 py-10'>
                         <div>
@@ -91,18 +132,19 @@ function LoginComp() {
                             <div className='my-6 text-center text-[#ffffffa0] text-sm sf-pro-med'>Or</div>
 
                             {/* login with google button */}
-                            <div className='w-full h-10 bg-white flex flex-row justify-around items-center rounded-md'>
+                            <div onClick={() => login()} className='w-full h-10 bg-white flex flex-row justify-around items-center rounded-md'>
                                 <div><img src={ggle} alt="" /></div>
                                 <div className='font-sf-med text-sm text-black'>Continue with Google</div>
                                 <div>
 
                                 </div>
                             </div>
+                            {/* <GoogleLogin onSuccess={responseMessage} onError={errorMessage} /> */}
                         </div>
                     </div>
                 </div>
 
-                <div className='absolute bottom-0 w-full'>
+                <div className='w-full'>
                     <Footer />
                 </div>
             </div>

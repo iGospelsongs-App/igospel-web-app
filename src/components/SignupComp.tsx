@@ -129,7 +129,7 @@ function SignupComp() {
                                 {/* newsletter checkbox */}
                                 <div className="mb-5 flex flex-row items-start gap-2">
                                     <div>
-                                        <input type="checkbox" name="agreement" id="agree" className='h-4 w-4' />
+                                        <input type="checkbox" name="agreement" id="news" className='h-4 w-4' />
                                     </div>
                                     <div className='text-white font-sf-reg text-xs'>
                                         Sign up  for the latest updates, news, and more about your preferred artists. Be among the first to receive exclusive content.
@@ -142,7 +142,7 @@ function SignupComp() {
                                 </div>
 
                                 <div className='mt-1'>
-                                    <Link to='/login' className='text-white font-sf-reg text-xs'>Don't have an account ? <span className='text-[#FF375F]'>Login</span></Link>
+                                    <Link to='/auth/login' className='text-white font-sf-reg text-xs'>Don't have an account ? <span className='text-[#FF375F]'>Login</span></Link>
                                 </div>
                             </form>
 
