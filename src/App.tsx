@@ -1,51 +1,14 @@
 import React from "react";
-import Signup from "./pages/auth/Signup";
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Login from "./pages/auth/Login";
-import Home from "./pages/Home";
-import PublicRoute from "./components/auth/PublicRoute";
-import PrivateRoute from "./components/auth/PrivateRoute";
 import AuthContextProvider from "./context/authContext";
-import VerifySignup from "./pages/auth/VerifySignup";
-import PasswordReset from "./pages/auth/passwordReset/Index";
+import { appRoutes } from "./routes/appRoutes";
+import { authRoute } from "./routes/authRoutes";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <PrivateRoute />,
-    children: [
-      {
-        path: "/",
-        element: <Home />
-      }
-    ]
-  },
-  {
-    path: "/auth",
-    element: <PublicRoute />,
-    children: [
-      {
-        path: "/auth/login",
-        element: <Login />
-      },
-      {
-        path: "/auth/signup",
-        element: <Signup />
-      },
-      {
-        path: "/auth/verify",
-        element: <VerifySignup />
-      },
-      {
-        path: '/auth/reset_password',
-        element: <PasswordReset />
-      }
-    ]
-  },
-])
+
+const router = createBrowserRouter([appRoutes, authRoute])
 
 function App() {
   return (
