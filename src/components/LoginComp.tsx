@@ -8,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { AuthContext } from '../context/authContext';
 import { googleLogout, useGoogleLogin } from '@react-oauth/google';
+import { Puff } from 'react-loader-spinner'
 
 function LoginComp() {
     const [showPassword, setShowPassword] = useState(false);
@@ -18,7 +19,7 @@ function LoginComp() {
     const navigate = useNavigate();
     const [user, setUser] = useState<any>([]);
     const [profile, setProfile] = useState<any>([]);
-    const [complete, setComplete] = useState(false)
+    const [loading, setLoading] = useState(false)
 
 
     const login = useGoogleLogin({
@@ -50,11 +51,6 @@ function LoginComp() {
         googleLogout();
         setProfile(null);
     };
-
-    // useEffect(() => {
-    //     if (email.length > 0 && password.length >= 6) setComplete(true)
-    //     console.log(complete)
-    // }, [email, password])
 
     const URL = "https://igospelsongs.onrender.com/user/signin/";
 
@@ -126,8 +122,24 @@ function LoginComp() {
                                 </div>
 
                                 {/* button here */}
-                                <button onClick={handleLogin} type="submit" className={`w-full h-10 ${email && password.length >= 6 ? 'bg-[#FF375F] text-white' : 'bg-[#636366] text-[#AEAEB2]'}  font-sf-med text-sm rounded-md flex flex-row items-center justify-center`} disabled={!(email && password.length >= 6)}>
-                                    Continue
+                                <button onClick={handleLogin} type="submit" className={`w-full h-10 ${!loading || (email && password.length >= 6) ? 'bg-[#FF375F] text-white' : 'bg-[#636366] text-[#AEAEB2]'}  font-sf-med text-sm rounded-md flex flex-row items-center justify-center`} disabled={!(loading || (email && password.length >= 6))}>
+                                    {
+                                        loading ? (
+                                            <div className='flex items-center justify-center'>
+                                                <Puff
+                                                    height="24"
+                                                    width="24"
+                                                    radius={1}
+                                                    color="white"
+                                                    ariaLabel="puff-loading"
+                                                    wrapperStyle={{}}
+                                                    wrapperClass=""
+                                                    visible={true}
+                                                />
+                                            </div>
+                                        ) : 'Continue'
+                                    }
+
                                 </button>
 
 
