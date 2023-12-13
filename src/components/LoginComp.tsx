@@ -124,9 +124,7 @@ function LoginComp() {
                                     Continue
                                 </button>
 
-                                <div className='mt-1'>
-                                    <Link to='/auth/signup' className='text-white font-sf-reg text-xs'>Don't have an account ? <span className='text-[#FF375F]'>Signup</span></Link>
-                                </div>
+
                             </form>
 
                             <div className='my-6 text-center text-[#ffffffa0] text-sm sf-pro-med'>Or</div>
@@ -141,6 +139,10 @@ function LoginComp() {
                             </div>
                             {/* <GoogleLogin onSuccess={responseMessage} onError={errorMessage} /> */}
                         </div>
+                    </div>
+
+                    <div className='mt-1'>
+                        <Link to='/auth/signup' className='text-white font-sf-reg text-xs'>Don't have an account ? <span className='text-[#FF375F]'>Signup</span></Link>
                     </div>
                 </div>
 

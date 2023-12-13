@@ -140,13 +140,12 @@ function SignupComp() {
                                 <div className='w-full h-10 bg-[#636366] text-[#AEAEB2] font-sf-med text-sm rounded-md flex flex-row items-center justify-center'>
                                     Continue
                                 </div>
-
-                                <div className='mt-1'>
-                                    <Link to='/auth/login' className='text-white font-sf-reg text-xs'>Don't have an account ? <span className='text-[#FF375F]'>Login</span></Link>
-                                </div>
                             </form>
 
                         </div>
+                    </div>
+                    <div className='mt-1'>
+                        <Link to='/auth/login' className='text-white font-sf-reg text-xs'>Don't have an account ? <span className='text-[#FF375F]'>Login here</span></Link>
                     </div>
                 </div>
 

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import Signup from "./pages/auth/Signup";
 import {
   createBrowserRouter,
@@ -8,7 +8,7 @@ import Login from "./pages/auth/Login";
 import Home from "./pages/Home";
 import PublicRoute from "./components/auth/PublicRoute";
 import PrivateRoute from "./components/auth/PrivateRoute";
-import AuthContextProvider, { AuthContext } from "./context/authContext";
+import AuthContextProvider from "./context/authContext";
 
 const router = createBrowserRouter([
   {
