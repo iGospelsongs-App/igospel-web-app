@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import PublicRoute from "./components/auth/PublicRoute";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import AuthContextProvider from "./context/authContext";
+import VerifySignup from "./pages/auth/VerifySignup";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "/auth/signup",
         element: <Signup />
+      },
+      {
+        path: "/auth/verify",
+        element: <VerifySignup />
       }
     ]
   },
