@@ -126,6 +126,9 @@ function LoginComp() {
 
 
                             </form>
+                            <div className='mt-1'>
+                                <Link to='/auth/signup' className='text-[#FF375F] font-sf-reg text-xs'>Forgot Password ?</Link>
+                            </div>
 
                             <div className='my-6 text-center text-[#ffffffa0] text-sm sf-pro-med'>Or</div>
 

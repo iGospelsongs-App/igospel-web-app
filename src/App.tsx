@@ -10,6 +10,7 @@ import PublicRoute from "./components/auth/PublicRoute";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import AuthContextProvider from "./context/authContext";
 import VerifySignup from "./pages/auth/VerifySignup";
+import PasswordReset from "./pages/auth/passwordReset/Index";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "/auth/verify",
         element: <VerifySignup />
+      },
+      {
+        path: '/auth/reset_password',
+        element: <PasswordReset />
       }
     ]
   },
