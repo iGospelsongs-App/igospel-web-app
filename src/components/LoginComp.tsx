@@ -18,6 +18,7 @@ function LoginComp() {
     const navigate = useNavigate();
     const [user, setUser] = useState<any>([]);
     const [profile, setProfile] = useState<any>([]);
+    const [complete, setComplete] = useState(false)
 
 
     const login = useGoogleLogin({
@@ -49,6 +50,11 @@ function LoginComp() {
         googleLogout();
         setProfile(null);
     };
+
+    // useEffect(() => {
+    //     if (email.length > 0 && password.length >= 6) setComplete(true)
+    //     console.log(complete)
+    // }, [email, password])
 
     const URL = "https://igospelsongs.onrender.com/user/signin/";
 
@@ -120,14 +126,14 @@ function LoginComp() {
                                 </div>
 
                                 {/* button here */}
-                                <button onClick={handleLogin} type="submit" className='w-full h-10 bg-[#636366] text-[#AEAEB2] font-sf-med text-sm rounded-md flex flex-row items-center justify-center'>
+                                <button onClick={handleLogin} type="submit" className={`w-full h-10 ${email && password.length >= 6 ? 'bg-[#FF375F] text-white' : 'bg-[#636366] text-[#AEAEB2]'}  font-sf-med text-sm rounded-md flex flex-row items-center justify-center`} disabled={!(email && password.length >= 6)}>
                                     Continue
                                 </button>
 
 
                             </form>
                             <div className='mt-1'>
-                                <Link to='/auth/signup' className='text-[#FF375F] font-sf-reg text-xs'>Forgot Password ?</Link>
+                                <Link to='/auth/reset_password' className='text-[#FF375F] font-sf-reg text-xs'>Forgot Password ?</Link>
                             </div>
 
                             <div className='my-6 text-center text-[#ffffffa0] text-sm sf-pro-med'>Or</div>
