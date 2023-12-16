@@ -9,17 +9,51 @@ import axios from 'axios'
 import { AuthContext } from '../context/authContext';
 import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 import { Puff } from 'react-loader-spinner'
+import ErrorTextComp from './ErrorTextComp';
 
 function LoginComp() {
     const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState('');
+    const [emailError, setEmailError] = useState<string>('')
     const [password, setPassword] = useState('');
+    const [passwordError, setPasswordError] = useState<string>('')
     const authCtx = useContext(AuthContext);
     const [errorMessages, setErrorMessages] = useState('')
     const navigate = useNavigate();
     const [user, setUser] = useState<any>([]);
     const [profile, setProfile] = useState<any>([]);
     const [loading, setLoading] = useState(false)
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    const fieldsValidation = () => {
+        let isEmailValid = true;
+        let isPasswordValid = true;
+
+        if (email.trim() === '') {
+            setEmailError('Email is required')
+            isEmailValid = false;
+        } else if (!emailPattern.test(email)) {
+            setEmailError('Invalid Email')
+            isEmailValid = false;
+        } else {
+            setEmailError('')
+        }
+
+        if (password.trim() === '') {
+            setPasswordError('Password is required')
+            isPasswordValid = false;
+        } else if (password.length < 6) {
+            setPasswordError('Password must be more than 6 char')
+            isPasswordValid = false;
+        } else {
+            setPasswordError('')
+        }
+
+        const isValid = isEmailValid && isPasswordValid;
+
+        return isValid;
+    }
 
 
     const login = useGoogleLogin({
@@ -44,13 +78,8 @@ function LoginComp() {
                     .catch((err) => console.log(err));
             }
         },
-        [user]
+        [user, profile]
     );
-
-    const logOut = () => {
-        googleLogout();
-        setProfile(null);
-    };
 
     const URL = "https://igospelsongs.onrender.com/user/signin/";
 
@@ -62,37 +91,42 @@ function LoginComp() {
         setPassword(e.target.value)
     }
 
-    // const handleFormData = (e: any) => {
-    //     e.preventDefault();
-    //     console.log(email, password)
-    // }
-
     const formValues = {
         email,
         password
     };
 
-    const handleLogin = async (e: any) => {
-        e.preventDefault();
+    const handleLogin = async () => {
         try {
             const response = await axios.post(URL, formValues);
             authCtx.authenticate(response.data.token);
+            setLoading(false)
             setEmail('');
             setPassword('');
             navigate('/')
             console.log(response)
         } catch (error: any) {
+            setLoading(false)
             console.log(error.response.data.Error[0]);
             setErrorMessages(error.response.data.Error[0])
         }
     }
 
-    const responseMessage = (response: any) => {
-        console.log(response);
-    };
-    const errorMessage = () => {
-        console.log('there was an error');
-    };
+    const handleSubmit = (e: any) => {
+        e.preventDefault();
+        if (fieldsValidation()) {
+            setErrorMessages('');
+            setLoading(true);
+            handleLogin();
+        }
+    }
+
+    // const responseMessage = (response: any) => {
+    //     console.log(response);
+    // };
+    // const errorMessage = () => {
+    //     console.log('there was an error');
+    // };
 
     return (
         <div className='mt-[100px]'>
@@ -106,6 +140,7 @@ function LoginComp() {
                                 <div className='mb-5'>
                                     <label htmlFor="email" className='text-white font-sf-reg text-xs'>Email</label>
                                     <input type="text" value={email} onChange={handleEmail} className='w-full mt-2 h-10 bg-transparent border-[1px] border-white px-2 text-white outline-none rounded-md font-sf-reg text-sm' placeholder='Enter your email' />
+                                    <ErrorTextComp errorCondition={emailError} />
                                 </div>
 
                                 <div className='mb-7'>
@@ -119,10 +154,12 @@ function LoginComp() {
 
                                         </div>
                                     </div>
+                                    <ErrorTextComp errorCondition={passwordError} />
+                                    <ErrorTextComp errorCondition={errorMessages} />
                                 </div>
 
                                 {/* button here */}
-                                <button onClick={handleLogin} type="submit" className={`w-full h-10 ${!loading || (email && password.length >= 6) ? 'bg-[#FF375F] text-white' : 'bg-[#636366] text-[#AEAEB2]'}  font-sf-med text-sm rounded-md flex flex-row items-center justify-center`} disabled={!(loading || (email && password.length >= 6))}>
+                                <button onClick={handleSubmit} type="submit" className={`w-full h-10 bg-[#FF375F] text-white  font-sf-med text-sm rounded-md flex flex-row items-center justify-center`} disabled={loading}>
                                     {
                                         loading ? (
                                             <div className='flex items-center justify-center'>
