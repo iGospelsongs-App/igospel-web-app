@@ -1,6 +1,6 @@
 import React from 'react'
-import bg from '../../assets/images/grad2.svg'
-import Footer from '../../components/Footer'
+import bg from '../../../assets/images/grad2.svg'
+import Footer from '../../../components/Footer'
 
 function ResetSuccess() {
     return (

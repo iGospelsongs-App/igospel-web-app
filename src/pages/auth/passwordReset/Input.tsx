@@ -4,7 +4,10 @@ import img from '../../../assets/images/pwrod.svg'
 import logo from '../../../assets/images/logo.svg'
 import AuthPageLayout from '../../../components/AuthPageLayout'
 import OTPInput from 'react-otp-input'
-
+import { useNavigate } from 'react-router-dom'
+import ErrorTextComp from '../../../components/ErrorTextComp'
+import axios from 'axios'
+import { Puff } from 'react-loader-spinner'
 
 
 function ResetPasswordInput() {
@@ -12,15 +15,47 @@ function ResetPasswordInput() {
     const [inputFill, setInputFill] = useState(false)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('');
+    const navigate = useNavigate();
+
+    const URL = "https://igospelsongs.onrender.com/user/verify_otp/";
+
+    //TODO: remove this and make sure they fix the error respnse from the backend
+    const ERROR_MESSAGE = "Request failed with status code 500"
 
     useEffect(() => {
-        if (otp.length === 6) {
+        if (otp.length === 4) {
             setInputFill(true)
         } else {
             setInputFill(false)
             setError('')
         }
     }, [otp])
+
+    const handlePostRequest = async () => {
+        try {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            const response = await axios.post(URL, { UserOTP: otp })
+            localStorage.setItem('reset_otp', otp)
+            setLoading(false);
+            setOtp('');
+            navigate('/auth/reset_password/new')
+        } catch (error: any) {
+            console.log('ERROR SAYS', error);
+            setLoading(false);
+            if (error.message === ERROR_MESSAGE) {
+                setError('Incorrect Pin')
+            }
+        }
+    }
+
+    const handleSubmit = () => {
+        console.log(otp)
+        if (inputFill) {
+            setError('');
+            setLoading(true);
+            handlePostRequest();
+        }
+    }
 
     return (
         <AuthPageLayout>
@@ -58,9 +93,27 @@ function ResetPasswordInput() {
                                         }} />}
                                     />
                                 </div>
+                                <div className='my-2'>
+                                    <ErrorTextComp errorCondition={error} />
+                                </div>
 
-                                <button type="submit" className='w-full h-10 bg-[#FF375F] text-white font-sf-med text-sm rounded-md flex flex-row items-center justify-center'>
-                                    Verify
+                                <button onClick={handleSubmit} type="submit" className={`w-full h-10 ${inputFill ? 'bg-[#FF375F] text-white' : 'bg-[#636366] text-[#AEAEB2]'}  font-sf-med text-sm rounded-md flex flex-row items-center justify-center`} disabled={loading}>
+                                    {
+                                        loading ? (
+                                            <div className='flex items-center justify-center'>
+                                                <Puff
+                                                    height="24"
+                                                    width="24"
+                                                    radius={1}
+                                                    color="white"
+                                                    ariaLabel="puff-loading"
+                                                    wrapperStyle={{}}
+                                                    wrapperClass=""
+                                                    visible={true}
+                                                />
+                                            </div>
+                                        ) : 'Verify'
+                                    }
                                 </button>
                             </div>
                         </div>
