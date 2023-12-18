@@ -4,8 +4,10 @@ import { FaRegEye } from "react-icons/fa6";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import ggle from '../assets/images/ggle.svg'
 import Footer from './Footer';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
+import ErrorTextComp from './ErrorTextComp';
+import { Puff } from 'react-loader-spinner'
 
 export interface SignupType {
     cover_image: any;
@@ -32,6 +34,7 @@ function SignupComp() {
     const [errorMessage, setErrorMessage] = useState('')
     const [agreementChecked, setAgreementChecked] = useState(false);
     const [newsCheck, setNewsCheck] = useState(false)
+    const navigate = useNavigate();
 
 
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -117,7 +120,31 @@ function SignupComp() {
         newsletter: newsCheck,
     }
 
-    const SUBMIT = () => console.log(formValue)
+    const handlePostRequest = async () => {
+        try {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            const response = await axios.post(URL, formValue)
+            setLoading(false);
+            setUsername('')
+            setFullname('')
+            setEmail('')
+            setPassword('')
+            navigate('/auth/verify')
+        } catch (error: any) {
+            if (error.response.data.error === "Email Exist") setEmailError('Email already exist')
+            setLoading(false)
+            setErrorMessage(error.response.data.error)
+        }
+    }
+
+    const handleSubmit = (e: any) => {
+        e.preventDefault();
+        if (fieldsValidation() && agreementChecked) {
+            setErrorMessage('');
+            setLoading(true)
+            handlePostRequest()
+        }
+    };
 
 
     return (
@@ -142,19 +169,22 @@ function SignupComp() {
                                 {/* fullname input  */}
                                 <div className='mb-5'>
                                     <label htmlFor="fullname" className='text-white font-sf-reg text-xs'>Full Name</label>
-                                    <input value={fullname} onChange={handleFullname} type="text" className='w-full mt-2 h-10 bg-transparent border-[1px] border-white px-2 text-white outline-none rounded-md font-sf-reg text-sm' placeholder='Enter your email' />
+                                    <input value={fullname} onChange={handleFullname} type="text" className='w-full mt-2 h-10 bg-transparent border-[1px] border-white px-2 text-white outline-none rounded-md font-sf-reg text-sm' placeholder='Enter your fullname' />
+                                    <ErrorTextComp errorCondition={fullnameError} />
                                 </div>
 
                                 {/* username input  */}
                                 <div className='mb-5'>
                                     <label htmlFor="username" className='text-white font-sf-reg text-xs'>Username</label>
-                                    <input value={username} onChange={handleUsername} type="text" className='w-full mt-2 h-10 bg-transparent border-[1px] border-white px-2 text-white outline-none rounded-md font-sf-reg text-sm' placeholder='Enter your email' />
+                                    <input value={username} onChange={handleUsername} type="text" className='w-full mt-2 h-10 bg-transparent border-[1px] border-white px-2 text-white outline-none rounded-md font-sf-reg text-sm' placeholder='Enter username' />
+                                    <ErrorTextComp errorCondition={usernameError} />
                                 </div>
 
                                 {/* email input  */}
                                 <div className='mb-5'>
                                     <label htmlFor="email" className='text-white font-sf-reg text-xs'>Email</label>
                                     <input value={email} onChange={handleEmail} type="text" className='w-full mt-2 h-10 bg-transparent border-[1px] border-white px-2 text-white outline-none rounded-md font-sf-reg text-sm' placeholder='Enter your email' />
+                                    <ErrorTextComp errorCondition={emailError} />
                                 </div>
 
                                 {/* password input  */}
@@ -169,6 +199,7 @@ function SignupComp() {
 
                                         </div>
                                     </div>
+                                    <ErrorTextComp errorCondition={passwordError} />
                                 </div>
 
                                 {/* agreement checkbox */}
@@ -192,9 +223,24 @@ function SignupComp() {
                                 </div>
 
                                 {/* button here */}
-                                <div onClick={SUBMIT} className='w-full h-10 bg-[#636366] text-[#AEAEB2] font-sf-med text-sm rounded-md flex flex-row items-center justify-center'>
-                                    Continue
-                                </div>
+                                <button onClick={handleSubmit} className={`w-full h-10 ${agreementChecked ? 'bg-[#FF375F] text-white' : 'bg-[#636366] text-[#AEAEB2]'}  font-sf-med text-sm rounded-md flex flex-row items-center justify-center`} disabled={loading}>
+                                    {
+                                        loading ? (
+                                            <div className='flex items-center justify-center'>
+                                                <Puff
+                                                    height="24"
+                                                    width="24"
+                                                    radius={1}
+                                                    color="white"
+                                                    ariaLabel="puff-loading"
+                                                    wrapperStyle={{}}
+                                                    wrapperClass=""
+                                                    visible={true}
+                                                />
+                                            </div>
+                                        ) : 'Continue'
+                                    }
+                                </button>
                             </form>
 
                         </div>
