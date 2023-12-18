@@ -5,6 +5,7 @@ import { FaRegEyeSlash } from "react-icons/fa6";
 import ggle from '../assets/images/ggle.svg'
 import Footer from './Footer';
 import { Link } from 'react-router-dom'
+import axios from 'axios';
 
 export interface SignupType {
     cover_image: any;
@@ -23,14 +24,59 @@ function SignupComp() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [fullnameError, setFullnameError] = useState('');
+    const [usernameError, setUsernameError] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('')
     const [agreementChecked, setAgreementChecked] = useState(false);
-    const [newsCheck, setNewsCheck] = useState(false);
+    const [newsCheck, setNewsCheck] = useState(false)
 
 
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const URL = 'https://igospelsongs.onrender.com/user/signup/';
+
+    const fieldsValidation = () => {
+        let isEmailValid = true;
+        let isPasswordValid = true;
+        let isfullnameValid = true;
+        let isUsernameValid = true;
+
+        if (fullname.trim() === '') {
+            setFullnameError('Full name is required')
+            isfullnameValid = false;
+        } else setFullnameError('')
+
+        if (username.trim() === '') {
+            setUsernameError('User name is required')
+            isUsernameValid = false;
+        } else setUsernameError('')
+
+        if (email.trim() === '') {
+            setEmailError('Email is required')
+            isEmailValid = false;
+        } else if (!emailPattern.test(email)) {
+            setEmailError('Invalid Email')
+            isEmailValid = false;
+        } else {
+            setEmailError('')
+        }
+
+        if (password.trim() === '') {
+            setPasswordError('Password is required')
+            isPasswordValid = false;
+        } else if (password.length < 6) {
+            setPasswordError('Password must be more than 6 char')
+            isPasswordValid = false;
+        } else {
+            setPasswordError('')
+        }
+
+        const isValid = isEmailValid && isPasswordValid && isfullnameValid && isUsernameValid;
+
+        return isValid;
+    }
 
     const handleUsername = (e: any) => {
         setErrorMessage('')
@@ -52,6 +98,14 @@ function SignupComp() {
         setPassword(e.target.value)
     }
 
+    const handleAgreementChecked = () => {
+        setAgreementChecked(!agreementChecked);
+    };
+
+    const handleNewsCheck = () => {
+        setNewsCheck(!newsCheck);
+    };
+
     const formValue = {
         cover_image: null,
         image: null,
@@ -59,10 +113,11 @@ function SignupComp() {
         email,
         username,
         password,
-        agreement: true,
+        agreement: agreementChecked,
         newsletter: newsCheck,
     }
 
+    const SUBMIT = () => console.log(formValue)
 
 
     return (
@@ -87,26 +142,26 @@ function SignupComp() {
                                 {/* fullname input  */}
                                 <div className='mb-5'>
                                     <label htmlFor="fullname" className='text-white font-sf-reg text-xs'>Full Name</label>
-                                    <input type="text" className='w-full mt-2 h-10 bg-transparent border-[1px] border-white px-2 text-white outline-none rounded-md font-sf-reg text-sm' placeholder='Enter your email' />
+                                    <input value={fullname} onChange={handleFullname} type="text" className='w-full mt-2 h-10 bg-transparent border-[1px] border-white px-2 text-white outline-none rounded-md font-sf-reg text-sm' placeholder='Enter your email' />
                                 </div>
 
                                 {/* username input  */}
                                 <div className='mb-5'>
                                     <label htmlFor="username" className='text-white font-sf-reg text-xs'>Username</label>
-                                    <input type="text" className='w-full mt-2 h-10 bg-transparent border-[1px] border-white px-2 text-white outline-none rounded-md font-sf-reg text-sm' placeholder='Enter your email' />
+                                    <input value={username} onChange={handleUsername} type="text" className='w-full mt-2 h-10 bg-transparent border-[1px] border-white px-2 text-white outline-none rounded-md font-sf-reg text-sm' placeholder='Enter your email' />
                                 </div>
 
                                 {/* email input  */}
                                 <div className='mb-5'>
                                     <label htmlFor="email" className='text-white font-sf-reg text-xs'>Email</label>
-                                    <input type="text" className='w-full mt-2 h-10 bg-transparent border-[1px] border-white px-2 text-white outline-none rounded-md font-sf-reg text-sm' placeholder='Enter your email' />
+                                    <input value={email} onChange={handleEmail} type="text" className='w-full mt-2 h-10 bg-transparent border-[1px] border-white px-2 text-white outline-none rounded-md font-sf-reg text-sm' placeholder='Enter your email' />
                                 </div>
 
                                 {/* password input  */}
                                 <div className='mb-7'>
                                     <label htmlFor="email" className='text-white font-sf-reg text-xs'>Password</label>
                                     <div className='border-[1px] border-white bg-transparent pl-2 mt-2 flex flex-row items-center rounded-md justify-between'>
-                                        <input type={showPassword ? 'text' : 'password'} placeholder='password' className='w-full h-10 bg-transparent flex-1 outline-0 text-white  font-sf-reg text-sm' style={{ borderWidth: '0', outline: 'none' }} />
+                                        <input value={password} onChange={handlePassword} type={showPassword ? 'text' : 'password'} placeholder='password' className='w-full h-10 bg-transparent flex-1 outline-0 text-white  font-sf-reg text-sm' style={{ borderWidth: '0', outline: 'none' }} />
                                         <div className='px-2' onClick={() => setShowPassword(!showPassword)}>
                                             {
                                                 showPassword ? <FaRegEye style={{ color: 'white' }} className='cursor-pointer' /> : <FaRegEyeSlash style={{ color: 'white' }} className='cursor-pointer' />
@@ -119,7 +174,7 @@ function SignupComp() {
                                 {/* agreement checkbox */}
                                 <div className="mb-5 flex flex-row items-start gap-2">
                                     <div>
-                                        <input type="checkbox" name="agreement" id="agree" className='h-4 w-4' />
+                                        <input value="agreement" checked={agreementChecked} onChange={handleAgreementChecked} type="checkbox" name="agreement" id="agree" className='h-4 w-4' />
                                     </div>
                                     <div className='text-white font-sf-reg text-xs'>
                                         I acknowledge that i have read and agree to <span className='text-[#FF375F]'>iGospel’s Agreement</span>
@@ -129,7 +184,7 @@ function SignupComp() {
                                 {/* newsletter checkbox */}
                                 <div className="mb-5 flex flex-row items-start gap-2">
                                     <div>
-                                        <input type="checkbox" name="agreement" id="news" className='h-4 w-4' />
+                                        <input value='newsletter' checked={newsCheck} onChange={handleNewsCheck} type="checkbox" name="agreement" id="news" className='h-4 w-4' />
                                     </div>
                                     <div className='text-white font-sf-reg text-xs'>
                                         Sign up  for the latest updates, news, and more about your preferred artists. Be among the first to receive exclusive content.
@@ -137,7 +192,7 @@ function SignupComp() {
                                 </div>
 
                                 {/* button here */}
-                                <div className='w-full h-10 bg-[#636366] text-[#AEAEB2] font-sf-med text-sm rounded-md flex flex-row items-center justify-center'>
+                                <div onClick={SUBMIT} className='w-full h-10 bg-[#636366] text-[#AEAEB2] font-sf-med text-sm rounded-md flex flex-row items-center justify-center'>
                                     Continue
                                 </div>
                             </form>

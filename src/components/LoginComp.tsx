@@ -7,7 +7,7 @@ import Footer from './Footer';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { AuthContext } from '../context/authContext';
-import { googleLogout, useGoogleLogin } from '@react-oauth/google';
+import { googleLogout, useGoogleLogin, GoogleLogin } from '@react-oauth/google';
 import { Puff } from 'react-loader-spinner'
 import ErrorTextComp from './ErrorTextComp';
 
@@ -57,13 +57,11 @@ function LoginComp() {
 
 
     const login = useGoogleLogin({
-        onSuccess: (codeResponse) => setUser(codeResponse),
-        onError: (error) => console.log('Login Failed:', error)
-    });
-
-    useEffect(
-        () => {
-            if (user) {
+        onSuccess: (codeResponse) => {
+            setUser(codeResponse)
+            authCtx.authenticate(codeResponse.access_token);
+            navigate('/');
+            if (codeResponse) {
                 axios
                     .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
                         headers: {
@@ -73,13 +71,13 @@ function LoginComp() {
                     })
                     .then((res) => {
                         setProfile(res.data);
-                        console.log(profile)
                     })
-                    .catch((err) => console.log(err));
+                    .catch((err) => console.log('ERROR IS', err));
             }
+            console.log(codeResponse.access_token)
         },
-        [user, profile]
-    );
+        onError: (error) => console.log('Login Failed:', error)
+    });
 
     const URL = "https://igospelsongs.onrender.com/user/signin/";
 
@@ -120,13 +118,6 @@ function LoginComp() {
             handleLogin();
         }
     }
-
-    // const responseMessage = (response: any) => {
-    //     console.log(response);
-    // };
-    // const errorMessage = () => {
-    //     console.log('there was an error');
-    // };
 
     return (
         <div className='mt-[100px]'>
