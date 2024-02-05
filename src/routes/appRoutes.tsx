@@ -1,5 +1,7 @@
 import PrivateRoute from "../components/auth/PrivateRoute";
 import Home from "../pages/Home";
+import Search from "../pages/Search";
+import HomeLayout from "../layouts/HomeLayout";
 
 export const appRoutes = {
     path: "/",
@@ -7,7 +9,17 @@ export const appRoutes = {
     children: [
         {
             path: "/",
-            element: <Home />
-        }
+            element: <HomeLayout />,
+            children: [
+                {
+                    path: "/",
+                    element: <Home />
+                },
+                {
+                    path: '/search',
+                    element: <Search />
+                }
+            ]
+        },
     ]
 }

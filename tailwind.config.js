@@ -8,6 +8,9 @@ module.exports = {
         "sf-med": "sf-pro-med",
         "sf-reg": "sf-pro-reg",
       },
+      linearGradientColors: {
+        'blue-black': ['rgba(52, 152, 219, 0.8)', '#000000'],
+      },
     },
   },
   plugins: [],
