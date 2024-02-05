@@ -10,6 +10,7 @@ import Header from '../components/Header';
 function HomeLayout() {
     const sidebarIsOpen = useContext(SidebarContext);
     const { switchSidebar, isOpen } = useContext(SidebarContext);
+    const isMobile = window.innerWidth <= 768;
 
     const handleOpenSidebar = () => {
         switchSidebar();
@@ -18,10 +19,10 @@ function HomeLayout() {
     return (
         <div className='bg-gradient-to-br from-[#291317] via-transparent to-black'>
             <div className='flex items-start'>
-                <div className={`w-[220px] ${!sidebarIsOpen.isOpen && 'bg-transparent'} h-[100vh] fixed overflow-auto bg-black text-white`}>
-                    <div className='pl-[30px] pt-2 flex items-center gap-4'>
+                <div className={`w-[220px] ${!isOpen && 'bg-transparent'} h-[100vh] fixed overflow-auto bg-black text-white`}>
+                    <div className='pl-[30px] mt-5 flex items-center gap-4'>
                         <img src={hamburger} alt="" className='w-[27px] h-[27px] cursor-pointer' onClick={handleOpenSidebar} />
-                        <img src={Logo} alt="" className='w-[110px] h-[50px]' />
+                        <img src={Logo} alt="" className={`w-[110px] ${!isOpen && isMobile ? 'hidden' : ''}`} />
                     </div>
                     <div className=''>
                         {
@@ -31,7 +32,7 @@ function HomeLayout() {
                 </div>
 
 
-                <div className={`w-full h-screen ml-[220px] ${isOpen && 'pl-7'}`}>
+                <div className={`w-full h-screen ${!isOpen && isMobile ? 'ml-[80px]' : (isOpen && isMobile) ? 'ml-0' : 'ml-[220px]'} ${isOpen && 'pl-7'}`}>
                     <div className={`mt-5 mb-7`}>
                         <Header />
                     </div>
