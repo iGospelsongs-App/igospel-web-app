@@ -6,7 +6,7 @@ function Home() {
 
     return (
         <div className='text-white'>
-            <div>home page</div>
+            <div>one page is two page is  three page is four page is five page</div>
             <button onClick={() => authCtx.logout()}>logout</button>
         </div>
     )
