@@ -32,12 +32,14 @@ function HomeLayout() {
                 </div>
 
 
-                <div className={`w-full h-screen ${!isOpen && isMobile ? 'ml-[80px]' : (isOpen && isMobile) ? 'ml-[52px]' : 'ml-[220px]'} ${isOpen && 'pl-7'}`}>
-                    <div className={`mt-5 mb-7`}>
+                <div className={`w-full relative ${!isOpen && isMobile ? 'ml-[80px]' : (isOpen && isMobile) ? 'ml-[52px]' : 'ml-[220px]'} ${isOpen && 'pl-7'}`}>
+                    <div className={`mt-5 mb-7 sticky top-[20px] w-full`}>
                         <Header />
                     </div>
-
-                    <Outlet />
+                    <div className='h-[800px]'>
+                      <Outlet />  
+                    </div>
+                    
                 </div>
             </div>
 
