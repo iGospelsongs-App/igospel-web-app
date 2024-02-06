@@ -17,7 +17,7 @@ function Sidebar() {
 
     return (
         <div className=''>
-            <ul className="pt-6">
+            <ul className="">
                 {
                     sidebarMenuData.map((item: MenuItem, i: number) => (
                         <div key={i}>
