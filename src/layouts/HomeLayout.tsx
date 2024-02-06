@@ -24,7 +24,7 @@ function HomeLayout() {
                         <img src={hamburger} alt="" className='w-[27px] h-[27px] cursor-pointer' onClick={handleOpenSidebar} />
                         <img src={Logo} alt="" className={`w-[110px] ${!isOpen && isMobile ? 'hidden' : ''}`} />
                     </div>
-                    <div className={`${(!isOpen && !isScroll) ? 'bg-transparent' : 'bg-black w-[90px]'}`}>
+                    <div className={`${(!isOpen && !isScroll) ? 'bg-transparent' : ''}`}>
                         {
                             isOpen ? <Sidebar /> : <SidebarClosed />
                         }
