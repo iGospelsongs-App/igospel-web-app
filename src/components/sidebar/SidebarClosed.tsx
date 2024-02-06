@@ -7,13 +7,14 @@ import { SidebarContext } from '../../context/sidebarContext';
 
 function SidebarClosed() {
     const [submenuStates, setSubmenuStates] = useState<Record<number, boolean>>({});
+    const { isScroll } = useContext(SidebarContext);
 
     const toggleSubmenu = (index: number) => {
         setSubmenuStates((prev: any) => ({
             ...prev,
             [index]: !prev[index]
         }));
-    };
+    }; 
 
     return (
         <div className=''>

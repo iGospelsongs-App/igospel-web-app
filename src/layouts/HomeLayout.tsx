@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { SidebarContext } from '../context/sidebarContext';
 import Sidebar from '../components/sidebar/Sidebar';
@@ -9,7 +9,7 @@ import Header from '../components/Header';
 
 function HomeLayout() {
     const sidebarIsOpen = useContext(SidebarContext);
-    const { switchSidebar, isOpen } = useContext(SidebarContext);
+    const { switchSidebar, isOpen, isScroll } = useContext(SidebarContext);
     const isMobile = window.innerWidth <= 768;
 
     const handleOpenSidebar = () => {
@@ -32,8 +32,8 @@ function HomeLayout() {
                 </div>
 
 
-                <div className={`w-full relative ${!isOpen && isMobile ? 'ml-[80px]' : (isOpen && isMobile) ? 'ml-[52px]' : 'ml-[220px]'} ${isOpen && 'pl-7'}`}>
-                    <div className={`mt-5 mb-7 sticky top-[20px] w-full`}>
+                <div className={`w-full relative ${!isOpen && isMobile ? 'ml-[80px]' : (isOpen && isMobile) ? 'ml-[52px]' : 'ml-[220px]'} ${isOpen && 'pl-0'}`}>
+                    <div className={`mb-4 ${isScroll && 'bg-black'} sticky top-[0px] pt-5 pb-5 w-full ${isOpen && 'pl-7'}`}>
                         <Header />
                     </div>
                     <div className='h-[800px]'>
