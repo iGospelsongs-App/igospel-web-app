@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 import { sidebarMenuData } from '../../data/DummyData';
 import { MenuItem, SubMenuItem } from '../../types';
 import { SidebarContext } from '../../context/sidebarContext';
+import { NavLink } from 'react-router-dom';
 
 function Sidebar() {
     const [submenuStates, setSubmenuStates] = useState<Record<number, boolean>>({});
+    const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
     const toggleSubmenu = (index: number) => {
         setSubmenuStates((prev: any) => ({
@@ -15,12 +17,16 @@ function Sidebar() {
         }));
     };
 
+    const handleItemClick = (index: number) => {
+        setActiveIndex(index);
+    };
+
     return (
         <div className=''>
             <ul className="">
                 {
                     sidebarMenuData.map((item: MenuItem, i: number) => (
-                        <div key={i}>
+                        <>
                             {item.subMenus ? (
                                 <li
                                     className={`flex rounded-md py-2 px-10 cursor-pointer text-black text-sm items-center gap-x-4 ${item.gap ? 'mt-9' : 'mt-2'}`}
@@ -34,7 +40,7 @@ function Sidebar() {
                                     )}
                                 </li>
                             ) : (
-                                <Link to={item.src} className={`flex rounded-md py-2 pr-10 pl-[30px] cursor-pointer text-white text-sm items-center gap-x-4 ${item.gap ? 'mt-9' : 'mt-2'}`}>
+                                <Link onClick={() => handleItemClick(i)} key={i} to={item.src} className={`flex rounded-md py-2 pr-10 pl-[30px] cursor-pointer text-white text-sm items-center gap-x-4 ${item.gap ? 'mt-9' : 'mt-2'} ${i === activeIndex ? 'bg-red-200' : ''}`}>
                                     <img alt="" src={item.icon} className='w-6 h-6' />
                                     <span className="flex-1 font-sf-reg text-sm">{item.title}</span>
                                 </Link>
@@ -50,7 +56,7 @@ function Sidebar() {
                                     </ul>
                                 )
                             }
-                        </div>
+                        </>
                     ))
                 }
             </ul>
