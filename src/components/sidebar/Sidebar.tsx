@@ -40,7 +40,9 @@ function Sidebar() {
                                     )}
                                 </li>
                             ) : (
-                                <NavLink  onClick={() => handleItemClick(i)} key={i} to={item.src} className={`flex rounded-md py-2 pr-10 pl-[30px] mx-3 hover:bg-[#2b2b2b] cursor-pointer text-white text-sm items-center justify-start gap-x-7 ${item.gap ? 'mt-9' : 'mt-2'}`}>
+                                <NavLink style={
+                                    ({ isActive }) => (isActive ? { backgroundColor: '#181818' } : {})
+                                } onClick={() => handleItemClick(i)} key={i} to={item.src} className={`flex rounded-md py-2 pr-10 pl-[20px] mx-3 hover:bg-[#2b2b2b] cursor-pointer text-white text-sm items-center justify-start gap-x-7 ${item.gap ? 'mt-9' : 'mt-2'}`}>
                                     <img alt="" src={item.icon} className='w-6 h-6' />
                                     <span className="flex-1 font-sf-reg text-sm">{item.title}</span>
                                 </NavLink>

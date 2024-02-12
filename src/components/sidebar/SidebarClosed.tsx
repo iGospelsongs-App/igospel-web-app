@@ -1,20 +1,9 @@
 import React, { useContext, useState } from 'react';
-import { AiFillCaretRight } from "react-icons/ai";
 import { Link } from 'react-router-dom';
 import { sidebarMenuData } from '../../data';
-import { MenuItem, SubMenuItem } from '../../types';
-import { SidebarContext } from '../../context/sidebarContext';
+import { MenuItem } from '../../types';
 
 function SidebarClosed() {
-    const [submenuStates, setSubmenuStates] = useState<Record<number, boolean>>({});
-    const { isScroll } = useContext(SidebarContext);
-
-    const toggleSubmenu = (index: number) => {
-        setSubmenuStates((prev: any) => ({
-            ...prev,
-            [index]: !prev[index]
-        }));
-    };
 
     return (
         <div className=''>
@@ -35,3 +24,4 @@ function SidebarClosed() {
 }
 
 export default SidebarClosed
+
