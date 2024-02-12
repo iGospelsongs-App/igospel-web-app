@@ -19,7 +19,7 @@ function HomeLayout() {
     return (
         <div className='bg-gradient-to-br from-[#291317] via-transparent to-black'>
             <div className='flex items-start'>
-                <div className={`w-[220px] ${!isOpen && 'bg-transparent'} h-[100vh] fixed overflow-auto bg-black text-white`}>
+                <div className={`w-[220px] z-10 ${!isOpen && 'bg-transparent'} h-[100vh] fixed overflow-auto bg-black text-white`}>
                     <div className={`pl-[30px] ${(!isOpen && isScroll) && 'bg-black'} pt-5 pb-[28px] flex items-center gap-4`}>
                         <img src={hamburger} alt="" className='w-[27px] h-[27px] cursor-pointer' onClick={handleOpenSidebar} />
                         <img src={Logo} alt="" className={`w-[110px] ${!isOpen && isMobile ? 'hidden' : ''}`} />

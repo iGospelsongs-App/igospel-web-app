@@ -40,10 +40,10 @@ function Sidebar() {
                                     )}
                                 </li>
                             ) : (
-                                <Link onClick={() => handleItemClick(i)} key={i} to={item.src} className={`flex rounded-md py-2 pr-10 pl-[30px] cursor-pointer text-white text-sm items-center gap-x-4 ${item.gap ? 'mt-9' : 'mt-2'} ${i === activeIndex ? 'bg-red-200' : ''}`}>
+                                <NavLink  onClick={() => handleItemClick(i)} key={i} to={item.src} className={`flex rounded-md py-2 pr-10 pl-[30px] mx-3 hover:bg-[#2b2b2b] cursor-pointer text-white text-sm items-center justify-start gap-x-7 ${item.gap ? 'mt-9' : 'mt-2'}`}>
                                     <img alt="" src={item.icon} className='w-6 h-6' />
                                     <span className="flex-1 font-sf-reg text-sm">{item.title}</span>
-                                </Link>
+                                </NavLink>
                             )}
                             {
                                 item.subMenus && submenuStates[i] && (
