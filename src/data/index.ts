@@ -12,13 +12,13 @@ export const sidebarMenuData: MenuItem[] = [
   },
   {
     title: "Explore",
-    src: "/",
+    src: "/explore",
     icon: icon2,
   },
-  { title: "Library", src: "/", icon: icon3 },
+  { title: "Library", src: "/library", icon: icon3 },
   {
     title: "Premium",
-    src: "/",
+    src: "/premium",
     icon: icon4,
   },
 ];

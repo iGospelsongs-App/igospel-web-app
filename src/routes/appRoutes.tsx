@@ -2,6 +2,9 @@ import PrivateRoute from "../components/auth/PrivateRoute";
 import Home from "../pages/Home";
 import Search from "../pages/Search";
 import HomeLayout from "../layouts/HomeLayout";
+import Explore from "../pages/Explore";
+import Library from "../pages/Library";
+import Premium from "../pages/Premium";
 
 export const appRoutes = {
     path: "/",
@@ -18,6 +21,18 @@ export const appRoutes = {
                 {
                     path: '/search',
                     element: <Search />
+                },
+                {
+                    path: '/explore',
+                    element: <Explore />
+                },
+                {
+                    path: '/library',
+                    element: <Library />
+                },
+                {
+                    path: '/premium',
+                    element: <Premium />
                 }
             ]
         },

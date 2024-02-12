@@ -23,3 +23,10 @@ export interface TableContentType {
     number: string;
     quantity: number;
   }
+
+export interface SliderDisplayDataType {
+    title: string;
+    type: string;
+    artist: string;
+    image: string;
+}
