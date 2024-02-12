@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { AiFillCaretRight } from "react-icons/ai";
 import { Link } from 'react-router-dom';
-import { sidebarMenuData } from '../../data/DummyData';
+import { sidebarMenuData } from '../../data';
 import { MenuItem, SubMenuItem } from '../../types';
 import { SidebarContext } from '../../context/sidebarContext';
 import { NavLink } from 'react-router-dom';

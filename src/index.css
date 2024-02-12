@@ -44,3 +44,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: black;
 }
+
+.active {
+  background-color: red-200;
+}
