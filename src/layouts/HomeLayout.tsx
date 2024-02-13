@@ -32,11 +32,11 @@ function HomeLayout() {
                 </div>
 
 
-                <div className={`w-full relative ${!isOpen && isMobile ? 'ml-[80px]' : (isOpen && isMobile) ? 'ml-[52px]' : 'ml-[220px]'} ${isOpen && 'pl-0'}`}>
+                <div className={`w-full overflow-x-hidden relative ${!isOpen && isMobile ? 'ml-[80px]' : (isOpen && isMobile) ? 'ml-[52px]' : 'ml-[220px]'} ${isOpen && 'pl-0'}`}>
                     <div className={`mb-4 ${isScroll && 'bg-black'} sticky top-[0px] pt-5 pb-5 w-full ${isOpen && 'pl-7'}`}>
                         <Header />
                     </div>
-                    <div className={`h-[800px] ${isOpen && 'pl-7'}`}>
+                    <div className={`h-[800px] ${isOpen && 'pl-7'} pr-7`}>
                       <Outlet />  
                     </div>
                     
