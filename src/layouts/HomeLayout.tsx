@@ -36,7 +36,7 @@ function HomeLayout() {
                     <div className={`mb-4 ${isScroll && 'bg-black'} sticky top-[0px] pt-5 pb-5 w-full ${isOpen && 'pl-7'}`}>
                         <Header />
                     </div>
-                    <div className='h-[800px]'>
+                    <div className={`h-[800px] ${isOpen && 'pl-7'}`}>
                       <Outlet />  
                     </div>
                     
