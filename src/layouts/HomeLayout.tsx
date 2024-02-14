@@ -1,19 +1,25 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { SidebarContext } from '../context/sidebarContext';
 import Sidebar from '../components/sidebar/Sidebar';
 import hamburger from '../assets/images/hamburger.svg'
 import Logo from '../assets/images/logo.svg'
 import SidebarClosed from '../components/sidebar/SidebarClosed';
 import Header from '../components/Header';
+import { useSelector, useDispatch } from 'react-redux';
+import { setNavbarScroll, switchSidebar } from '../redux/features/sidebarSlice';
 
 function HomeLayout() {
-    const sidebarIsOpen = useContext(SidebarContext);
-    const { switchSidebar, isOpen, isScroll } = useContext(SidebarContext);
     const isMobile = window.innerWidth <= 768;
+    const {isOpen, isScroll} = useSelector((state: any) => state.sidebar)
+    const dispatch = useDispatch();
+
+    window.addEventListener("scroll", () => {
+        const isScrolled = window.scrollY >= 10;
+        dispatch(setNavbarScroll(isScrolled));
+      });
 
     const handleOpenSidebar = () => {
-        switchSidebar();
+        dispatch(switchSidebar());
     }
 
     return (
