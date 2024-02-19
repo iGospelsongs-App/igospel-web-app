@@ -39,7 +39,7 @@ function HomeLayout() {
                     </div>
 
                     {/* outlet here  */}
-                    <div className='ml-[220px] px-5 pt-20'>
+                    <div className={`ml-[220px] px-5 pt-20 ${!isOpen && !isMobile ? 'ml-[180px]' : !isOpen && isMobile ? 'ml-[90px]' : (isOpen && isMobile) ? 'ml-[90px]' : 'ml-[220px]'}`}>
                         <Outlet />
                     </div>
                 </div>

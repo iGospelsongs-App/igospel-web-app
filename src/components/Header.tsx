@@ -24,17 +24,17 @@ function Header() {
     return (
         <div>
             <div className={`flex items-center justify-between pr-7 gap-2  ${(isScroll) && 'bg-black'}`}>
-                <div className='flex flex-1 items-center gap-20'>
+                <div className={`flex flex-1 items-center ${isOpen && !isMobile ? 'gap-14' : 'gap-5'} `}>
                     {/* header here  */}
-                    <div className={`w-[220px] z-10 ${!isOpen && 'bg-transparent'} text-white`}>
+                    <div className={`min-w-[90px] z-10 ${!isOpen && 'bg-transparent'} text-white`}>
                         <div className={`pl-[30px] ${isScroll && isMobile && !isOpen ? 'w-[80px]' : ''} pt-5 pb-[28px] flex items-center gap-4`}>
-                            <img src={hamburger} alt="" className='w-[27px] h-[27px] cursor-pointer' onClick={handleOpenSidebar} />
-                            <img src={Logo} alt="" className={`w-[110px] ${!isOpen && isMobile ? 'hidden' : ''}`} />
+                            <img src={hamburger} alt="" className={`w-[27px] h-[27px] cursor-pointer`} onClick={handleOpenSidebar} />
+                            <img src={Logo} alt="" className={`w-[110px]`} />
                         </div>
                     </div>
 
                     {/* search bar */}
-                    <div className='flex-1'>
+                    <div className={`flex-1 ${isMobile && 'hidden'}`}>
                         <div className='flex max-w-[300px] items-center border-[1px] border-[#98A2B3] bg-white bg-opacity-5 px-2 py-[5px] rounded-lg'>
                             <img src={searchIcon} alt="" className='w-[14px] mr-1' />
                             <input type="text" className='outline-none text-xs w-full font-sf-reg bg-transparent text-white py-1' placeholder='Search songs, albums, artists, sermons' />
@@ -44,6 +44,8 @@ function Header() {
 
 
                 <div className='flex items-center gap-4'>
+                    {/* search icon for mobile here   */}
+                    {isMobile && <div><img src={searchIcon} alt="" className='w-[20px] mr-1' /></div>}
                     {/* notification icon    */}
                     <div>
                         <img src={notifIcon} alt="" className='w-8' />
