@@ -27,7 +27,7 @@ function Header() {
                 <div className={`flex flex-1 items-center ${isOpen && !isMobile ? 'gap-14' : 'gap-5'} `}>
                     {/* header here  */}
                     <div className={`min-w-[90px] z-10 ${!isOpen && 'bg-transparent'} text-white`}>
-                        <div className={`pl-[30px] ${isScroll && isMobile && !isOpen ? 'w-[80px]' : ''} pt-5 pb-[28px] flex items-center gap-4`}>
+                        <div className={`pl-[30px]  pt-5 pb-[28px] flex items-center gap-4`}>
                             <img src={hamburger} alt="" className={`w-[27px] h-[27px] cursor-pointer`} onClick={handleOpenSidebar} />
                             <img src={Logo} alt="" className={`w-[110px]`} />
                         </div>
