@@ -6,7 +6,7 @@ import { MenuItem } from '../../types';
 function SidebarClosed() {
 
     return (
-        <div className=''>
+        <div className='pt-20'>
             <ul className="">
                 {
                     sidebarMenuData.map((item: MenuItem, i: number) => (
