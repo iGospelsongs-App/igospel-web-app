@@ -6,10 +6,12 @@ import ggle from '../assets/images/ggle.svg'
 import Footer from './Footer';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'
-import { AuthContext } from '../context/authContext';
 import { googleLogout, useGoogleLogin, GoogleLogin } from '@react-oauth/google';
 import { Puff } from 'react-loader-spinner'
 import ErrorTextComp from './ErrorTextComp';
+import { useSelector, useDispatch } from 'react-redux';
+import { authenticate } from '../redux/features/authSlice';
+import { AppDispatch } from '../redux/store';
 
 function LoginComp() {
     const [showPassword, setShowPassword] = useState(false);
@@ -17,12 +19,12 @@ function LoginComp() {
     const [emailError, setEmailError] = useState<string>('')
     const [password, setPassword] = useState('');
     const [passwordError, setPasswordError] = useState<string>('')
-    const authCtx = useContext(AuthContext);
     const [errorMessages, setErrorMessages] = useState('')
     const navigate = useNavigate();
     const [user, setUser] = useState<any>([]);
     const [profile, setProfile] = useState<any>([]);
     const [loading, setLoading] = useState(false)
+    const dispatch = useDispatch<AppDispatch>();
 
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -59,7 +61,7 @@ function LoginComp() {
     const login = useGoogleLogin({
         onSuccess: (codeResponse) => {
             setUser(codeResponse)
-            authCtx.authenticate(codeResponse.access_token);
+            dispatch(authenticate(codeResponse.access_token));
             navigate('/');
             if (codeResponse) {
                 axios
@@ -97,7 +99,8 @@ function LoginComp() {
     const handleLogin = async () => {
         try {
             const response = await axios.post(URL, formValues);
-            authCtx.authenticate(response.data.token);
+            // authCtx.authenticate(response.data.token);
+            dispatch(authenticate(response.data.token))
             setLoading(false)
             setEmail('');
             setPassword('');

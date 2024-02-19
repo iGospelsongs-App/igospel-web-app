@@ -3,7 +3,6 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import AuthContextProvider from "./context/authContext";
 import { appRoutes } from "./routes/appRoutes";
 import { authRoute } from "./routes/authRoutes";
 
@@ -14,9 +13,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <AuthContextProvider>
-          <RouterProvider router={router} />
-        </AuthContextProvider>
+        <RouterProvider router={router} />
       </header>
     </div>
   );
