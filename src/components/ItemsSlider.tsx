@@ -1,8 +1,8 @@
-import React, { FunctionComponent, useRef, useState } from 'react';
+import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
 import { sliderDisplayData } from '../data/DummyData';
 import { SliderDisplayDataType } from '../types';
-import { IoIosArrowDropright, IoIosArrowDropleft } from "react-icons/io";
-
+import greyarrow from '../assets/images/greyarrow.svg';
+import whitearrow from '../assets/images/whitearrow.svg';
 
 type ItemSliderProps = {
   title: string;
@@ -11,18 +11,38 @@ type ItemSliderProps = {
 const ItemsSlider: FunctionComponent<ItemSliderProps> = ({title}) => {
   const sliderRef = useRef(null);
   const scrollAmount = 300;
-  const [data, setData] = useState(sliderDisplayData)
+  const [data, setData] = useState<SliderDisplayDataType[]>(sliderDisplayData);
+  const [isLeftDisabled, setIsLeftDisabled] = useState(true);
+  const [isRightDisabled, setIsRightDisabled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const container = sliderRef.current as HTMLElement | null;
+      if (container) {
+        setIsLeftDisabled(container.scrollLeft === 0);
+        setIsRightDisabled(container.scrollLeft >= container.scrollWidth - container.clientWidth);
+      }
+    };
+    
+    const container = sliderRef.current as HTMLElement | null;
+    if (container) {
+      container.addEventListener('scroll', handleScroll);
+      return () => container.removeEventListener('scroll', handleScroll);
+    }
+  }, []);
 
   const leftScroll = () => {
-    const container = sliderRef.current;
-    // @ts-ignore 
-    container.scrollLeft -= scrollAmount; // Scroll left by the specified amount
+    const container = sliderRef.current as HTMLElement | null;
+    if(container) {
+      container.scrollLeft -= scrollAmount; 
+    }
   }
 
   const rightScroll = () => {
-    const container = sliderRef.current;
-    // @ts-ignore 
-    container.scrollLeft += scrollAmount; // Scroll right by the specified amount
+    const container = sliderRef.current as HTMLElement | null;
+    if(container) {
+      container.scrollLeft += scrollAmount; 
+    }
   }
 
   return (
@@ -33,8 +53,9 @@ const ItemsSlider: FunctionComponent<ItemSliderProps> = ({title}) => {
           <div className='flex items-center gap-3'>
             <div className='text-sm font-sf-reg border-[1px] border-white rounded-xl px-3 py-[2px] cursor-pointer'>More</div>
             <div className='flex items-center gap-2'>
-              <span onClick={leftScroll}><IoIosArrowDropleft size={30} className='cursor-pointer'/></span>
-              <span onClick={rightScroll}><IoIosArrowDropright size={30} className='cursor-pointer'/></span>
+              {isLeftDisabled ? <img src={greyarrow} className='rotate-180' alt="" /> : <img src={whitearrow} alt="" className='rotate-180 cursor-pointer' onClick={leftScroll} />}
+              {isRightDisabled ? <img src={greyarrow} className='rotate-180' alt="" /> : <img src={whitearrow} className='cursor-pointer' alt="" onClick={rightScroll} />}
+              
             </div>
           </div>
         </div>
