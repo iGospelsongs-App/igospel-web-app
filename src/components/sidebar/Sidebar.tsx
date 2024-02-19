@@ -21,7 +21,7 @@ function Sidebar() {
     };
 
     return (
-        <div className=''>
+        <div className='pt-20 w-[220px]'>
             <ul className="">
                 {
                     sidebarMenuData.map((item: MenuItem, i: number) => (

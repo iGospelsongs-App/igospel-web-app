@@ -8,7 +8,7 @@ function Home() {
     const dispatch = useDispatch<AppDispatch>();
 
     return (
-        <div className='text-white'>
+        <div className='text-white h-[800px]'>
             <ItemsSlider title="Recommended albums" />
             <br /><br />
             <button onClick={() => dispatch(logout())}>logout</button>
