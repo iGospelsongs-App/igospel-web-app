@@ -1,15 +1,13 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from '../components/Header';
-import { useSelector, useDispatch } from 'react-redux';
-import { setNavbarScroll, switchSidebar } from '../redux/features/sidebarSlice';
+import { useSelector } from 'react-redux';
 import Sidebar from '../components/sidebar/Sidebar';
 import SidebarClosed from '../components/sidebar/SidebarClosed';
 
 function HomeLayout() {
     const isMobile = window.innerWidth <= 768;
     const { isOpen, isScroll } = useSelector((state: any) => state.sidebar)
-    const dispatch = useDispatch();
 
     return (
         <div className='bg-gradient-to-br from-[#291317] via-transparent to-black'>

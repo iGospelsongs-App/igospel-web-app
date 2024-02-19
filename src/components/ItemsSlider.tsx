@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useRef, useState } from 'react';
 import { sliderDisplayData } from '../data/DummyData';
 import { SliderDisplayDataType } from '../types';
 
@@ -7,6 +7,10 @@ type ItemSliderProps = {
 }
 
 const ItemsSlider: FunctionComponent<ItemSliderProps> = ({title}) => {
+  const sliderRef = useRef(null);
+  const scrollAmount = 100;
+  const [data, setData] = useState(sliderDisplayData)
+
   return (
     <div className='overflow-x-hidden'>
         <div className='flex items-center justify-between mb-4'>
@@ -18,7 +22,7 @@ const ItemsSlider: FunctionComponent<ItemSliderProps> = ({title}) => {
         <div className=''>
           <div className='flex items-center gap-4 overflow-x-auto no-scrollbar flex-nowrap'>
           {
-            sliderDisplayData.map((item: SliderDisplayDataType, i: number) => (
+            data.map((item: SliderDisplayDataType, i: number) => (
               <div className='min-w-[152px]' key={i}>
                 <img src={item.image} alt="" className='w-[152px]' />
                 <div className='font-sf-med text-sm text-white'>{item.title}</div>
