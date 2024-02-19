@@ -1,17 +1,19 @@
+//created this scroll slider with reference from https://dev.to/aneeqakhan/building-an-image-slider-with-smooth-scrolling-using-react-1jdb
+
 import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
-import { sliderDisplayData } from '../data/DummyData';
 import { SliderDisplayDataType } from '../types';
 import greyarrow from '../assets/images/greyarrow.svg';
 import whitearrow from '../assets/images/whitearrow.svg';
 
 type ItemSliderProps = {
   title: string;
+  sliderData: SliderDisplayDataType[];
 }
 
-const ItemsSlider: FunctionComponent<ItemSliderProps> = ({title}) => {
+const ItemsSlider: FunctionComponent<ItemSliderProps> = ({title, sliderData}) => {
   const sliderRef = useRef(null);
   const scrollAmount = 300;
-  const [data, setData] = useState<SliderDisplayDataType[]>(sliderDisplayData);
+  const [data, setData] = useState<SliderDisplayDataType[]>(sliderData);
   const [isLeftDisabled, setIsLeftDisabled] = useState(true);
   const [isRightDisabled, setIsRightDisabled] = useState(false);
 
