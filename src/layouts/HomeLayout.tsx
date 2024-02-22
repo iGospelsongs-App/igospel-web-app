@@ -8,6 +8,7 @@ import SidebarClosed from '../components/sidebar/SidebarClosed';
 function HomeLayout() {
     const isMobile = window.innerWidth <= 768;
     const isSmallScreen = window.innerWidth <= 640;
+
     const { isOpen, isScroll } = useSelector((state: any) => state.sidebar)
 
     return (
@@ -27,7 +28,7 @@ function HomeLayout() {
                     </div>
 
                     {/* outlet here  */}
-                    <div className={`ml-[220px] pl-5 pr-7 pt-20 ${isSmallScreen ? 'ml-0' : !isOpen && !isMobile ? 'ml-[180px]' : !isOpen && isMobile ? 'ml-[90px]' : (isOpen && isMobile) ? 'ml-[90px]' : 'ml-[220px]'}`}>
+                    <div className={`px-2 sm:px-5 pt-20 ${isSmallScreen ? 'ml-0' : !isOpen && !isMobile ? 'ml-[180px]' : !isOpen && isMobile ? 'ml-[90px]' : (isOpen && !isMobile) ? 'ml-[220px] ' : 'ml-[90px]'}`}>
                         <Outlet />
                     </div>
                 </div>
