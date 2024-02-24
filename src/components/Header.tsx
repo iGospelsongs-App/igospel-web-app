@@ -23,11 +23,11 @@ function Header() {
 
     return (
         <div>
-            <div className={`flex items-center justify-between pr-7 gap-2  ${(isScroll) && 'bg-black'}`}>
+            <div className={`flex items-center justify-between px-2 sm:px-5 gap-2  ${(isScroll) && 'bg-black'}`}>
                 <div className={`flex flex-1 items-center ${isOpen && !isMobile ? 'gap-14' : 'gap-5'} `}>
                     {/* header here  */}
                     <div className={`min-w-[90px] z-10 ${!isOpen && 'bg-transparent'} text-white`}>
-                        <div className={`pl-[30px]  pt-5 pb-[28px] flex items-center gap-4`}>
+                        <div className={`pt-5 pb-[28px] flex items-center space-x-3`}>
                             <img src={hamburger} alt="" className={`w-[27px] h-[27px] cursor-pointer`} onClick={handleOpenSidebar} />
                             <img src={Logo} alt="" className={`w-[110px]`} />
                         </div>
@@ -43,7 +43,7 @@ function Header() {
                 </div>
 
 
-                <div className='flex items-center gap-4'>
+                <div className='flex items-center space-x-2 sm:space-x-4'>
                     {/* search icon for mobile here   */}
                     {isMobile && <div><img src={searchIcon} alt="" className='w-[20px] mr-1' /></div>}
                     {/* notification icon    */}

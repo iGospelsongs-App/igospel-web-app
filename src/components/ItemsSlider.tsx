@@ -2,8 +2,7 @@
 
 import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
 import { SliderDisplayDataType } from '../types';
-import greyarrow from '../assets/images/greyarrow.svg';
-import whitearrow from '../assets/images/whitearrow.svg';
+import { ArrowLeftCircleIcon, ArrowRightCircleIcon } from '@heroicons/react/24/outline'
 
 type ItemSliderProps = {
   title: string;
@@ -50,14 +49,13 @@ const ItemsSlider: FunctionComponent<ItemSliderProps> = ({title, sliderData}) =>
   return (
     <div className='overflow-x-hidden'>
         <div className='flex items-center justify-between mb-4'>
-          <div className='font-sf-bold text-xl'>{title}</div>
+          <div className='font-sf-bold text-base sm:text-xl'>{title}</div>
 
-          <div className='flex items-center gap-3'>
-            <div className='text-sm font-sf-reg border-[1px] border-white rounded-xl px-3 py-[2px] cursor-pointer'>More</div>
+          <div className='flex items-center space-x-2 sm:space-x-3'>
+            <div className='text-[10px] sm:text-sm font-sf-reg border-[1px] border-white rounded-xl px-2 sm:px-3 py-[1px] sm:py-[2px] cursor-pointer'>More</div>
             <div className='flex items-center gap-2'>
-              {isLeftDisabled ? <img src={greyarrow} className='rotate-180' alt="" /> : <img src={whitearrow} alt="" className='rotate-180 cursor-pointer' onClick={leftScroll} />}
-              {isRightDisabled ? <img src={greyarrow} className='rotate-180' alt="" /> : <img src={whitearrow} className='cursor-pointer' alt="" onClick={rightScroll} />}
-              
+              <ArrowLeftCircleIcon onClick={leftScroll} className={`${isLeftDisabled ? 'text-gray-500' : 'text-white'} w-8 sm:w-10 h-8 sm:h-10 cursor-pointer`} />
+              <ArrowRightCircleIcon onClick={rightScroll} className={`${isRightDisabled ? 'text-gray-500' : 'text-white'} w-8 sm:w-10 h-8 sm:h-10 cursor-pointer`} />
             </div>
           </div>
         </div>
@@ -67,9 +65,9 @@ const ItemsSlider: FunctionComponent<ItemSliderProps> = ({title, sliderData}) =>
           <div ref={sliderRef} className='flex items-center gap-4 overflow-x-auto no-scrollbar flex-nowrap scroll-smooth transition duration-300 ease-in-out'>
           {
             data.map((item: SliderDisplayDataType, i: number) => (
-              <div className='min-w-[152px]' key={i}>
-                <img src={item.image} alt="" className='w-[152px]' />
-                <div className='font-sf-med text-sm text-white'>{item.title}</div>
+              <div className='min-w-[110px] sm:min-w-[152px]' key={i}>
+                <img src={item.image} alt="" className='w-[110px] sm:w-[152px]' />
+                <div className='font-sf-med text-[11px] sm:text-sm text-white'>{item.title}</div>
                 <div className='font-sf-med text-[10px] text-gray-400'>{item.artist}</div>
               </div>
             ))
