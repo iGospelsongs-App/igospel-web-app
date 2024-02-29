@@ -23,7 +23,7 @@ function Header() {
 
     return (
         <div>
-            <div className={`flex items-center justify-between px-2 sm:px-5 gap-2  ${(isScroll) && 'bg-black'}`}>
+            <div className={`flex items-center justify-between px-2 sm:px-5 gap-2  ${(isScroll) && 'bg-black border-b-[1px] border-b-[#323232]'}`}>
                 <div className={`flex flex-1 items-center ${isOpen && !isMobile ? 'gap-14' : 'gap-5'} `}>
                     {/* header here  */}
                     <div className={`min-w-[90px] z-10 ${!isOpen && 'bg-transparent'} text-white`}>

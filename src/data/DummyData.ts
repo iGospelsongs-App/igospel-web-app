@@ -6,7 +6,7 @@ import img5 from '../assets/images/carousel5.png';
 import img6 from '../assets/images/carousel6.png';
 import img7 from '../assets/images/carousel7.png';
 import img8 from '../assets/images/carousel8.png';
-import { SliderDisplayDataType } from '../types';
+import { SliderDisplayDataType, AlbumlistDataType } from '../types';
 
 export const sliderDisplayData: SliderDisplayDataType[] = [
   {
@@ -56,5 +56,48 @@ export const sliderDisplayData: SliderDisplayDataType[] = [
     type: 'Album',
     artist: '1spirit & Theophilus Sunday',
     image: img8,
+  },
+]
+
+export const albumListData: AlbumlistDataType[] = [
+  {
+    title: 'Yeshua Hamashiach(Overture)',
+    artist: 'Nathaniel Bassey',
+    duration: '7:56'
+  },
+  {
+    title: 'Ruach Elohim',
+    artist: 'Nathaniel Bassey',
+    duration: '10:01'
+  },
+  {
+    title: 'Lift up your head (Psalm 24)',
+    artist: 'Nathaniel Bassey',
+    duration: '5:39'
+  },
+  {
+    title: 'See What the Lord Has done',
+    artist: 'Nathaniel Bassey',
+    duration: '7:34'
+  },
+  {
+    title: 'Yeshua Hamashiach(Overture)',
+    artist: 'Nathaniel Bassey',
+    duration: '7:56'
+  },
+  {
+    title: 'Ruach Elohim',
+    artist: 'Nathaniel Bassey',
+    duration: '10:01'
+  },
+  {
+    title: 'Lift up your head (Psalm 24)',
+    artist: 'Nathaniel Bassey',
+    duration: '5:39'
+  },
+  {
+    title: 'See What the Lord Has done',
+    artist: 'Nathaniel Bassey',
+    duration: '7:34'
   },
 ]

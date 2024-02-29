@@ -3,6 +3,7 @@ import albumCover from '../assets/images/album-cover1.svg';
 import { UserCircleIcon, Squares2X2Icon } from '@heroicons/react/24/solid';
 import { HeartIcon } from '@heroicons/react/24/outline';
 import playBtn from '../assets/images/play-btn.svg'
+import { albumListData } from '../data/DummyData'
 
 function Album() {
     return (
@@ -30,7 +31,23 @@ function Album() {
             </div>
 
             {/* list section  */}
-            <div></div>
+            <div className='mt-10'>
+
+                {
+                    albumListData.map((items, i) => (
+                        <div key={i} className='flex flex-row justify-between items-center mb-8'>
+                            <div className='flex flex-row space-x-6 items-center'>
+                                <div className='smallText'>{i+1}</div>
+                                <div>
+                                    <div className='smallText'>{items.title}</div>
+                                    <div className='text-[#737373] text-base font-sf-reg'>{items.artist}</div>
+                                </div>
+                            </div>
+                            <div className='smallText'>{items.duration}</div>
+                        </div>
+                    ))
+                }
+            </div>
         </div>
     )
 }
