@@ -28,7 +28,7 @@ function HomeLayout() {
                     </div>
 
                     {/* outlet here  */}
-                    <div className={`px-2 sm:px-5 pt-20 ${isSmallScreen ? 'ml-0' : !isOpen && !isMobile ? 'ml-[180px]' : !isOpen && isMobile ? 'ml-[90px]' : (isOpen && !isMobile) ? 'ml-[220px] ' : 'ml-[90px]'}`}>
+                    <div className={`px-2 sm:px-5 pt-[100px] ${isSmallScreen ? 'ml-0' : !isOpen && !isMobile ? 'ml-[180px]' : !isOpen && isMobile ? 'ml-[90px]' : (isOpen && !isMobile) ? 'ml-[220px] ' : 'ml-[90px]'}`}>
                         <Outlet />
                     </div>
                 </div>

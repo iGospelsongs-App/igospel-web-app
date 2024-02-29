@@ -34,7 +34,7 @@ function Header() {
                     </div>
 
                     {/* search bar */}
-                    <div className={`flex-1 ${isMobile && 'hidden'}`}>
+                    <div className={`flex-1 ml-3 ${isMobile && 'hidden'}`}>
                         <div className='flex max-w-[300px] items-center border-[1px] border-[#98A2B3] bg-white bg-opacity-5 px-2 py-[5px] rounded-lg'>
                             <img src={searchIcon} alt="" className='w-[14px] mr-1' />
                             <input type="text" className='outline-none text-xs w-full font-sf-reg bg-transparent text-white py-1' placeholder='Search songs, albums, artists, sermons' />
