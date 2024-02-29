@@ -21,7 +21,7 @@ function HomeLayout() {
 
                 <div>
                     {/* sidbar here */}
-                    <div className={`${(!isOpen && !isScroll) ? 'bg-transparent' : ''} ${isScroll && 'border-r-[1px] border-r-[#323232]'} h-[100vh] fixed overflow-auto bg-black`}>
+                    <div className={`${(!isOpen && !isScroll) ? 'bg-transparent' : ''} z-[9] ${isScroll && 'border-r-[1px] border-r-[#323232]'} h-[100vh] fixed overflow-auto bg-black`}>
                         {
                             isOpen ? <Sidebar /> : !isSmallScreen && <SidebarClosed />
                         }

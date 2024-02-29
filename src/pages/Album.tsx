@@ -1,15 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import albumCover from '../assets/images/album-cover1.svg';
 import { UserCircleIcon, Squares2X2Icon } from '@heroicons/react/24/solid';
 import { HeartIcon } from '@heroicons/react/24/outline';
 import playBtn from '../assets/images/play-btn.svg'
 import { albumListData } from '../data/DummyData'
+import AlbumMenuModal from '../components/modal/AlbumMenuModal';
 
 function Album() {
+    const [showMenu, setShowMenu] = useState(true);
+
     return (
-        <div>
+        <div className=''>
             {/* intro section  */}
-            <div className='flex space-x-4 items-center'>
+            <div className={`flex space-x-4 items-center`}>
                 <div>
                     <img src={albumCover} alt="" className='w-[237px]' />
                 </div>
@@ -24,10 +27,11 @@ function Album() {
             </div>
 
             {/* control section  */}
-            <div className='pt-10 flex flex-row space-x-6'>
+            <div className='pt-10 flex flex-row space-x-6 relative'>
                 <img src={playBtn} alt="" className='w-10 sm:w-[52px]' />
                 <HeartIcon className='w-8 text-white' />
-                <Squares2X2Icon className='w-8 text-white' />
+                <Squares2X2Icon onClick={() => setShowMenu(!showMenu)} className='w-8 text-white cursor-pointer' />
+                {showMenu && <AlbumMenuModal />}
             </div>
 
             {/* list section  */}
@@ -37,7 +41,7 @@ function Album() {
                     albumListData.map((items, i) => (
                         <div key={i} className='flex flex-row justify-between items-center mb-8 cursor-pointer'>
                             <div className='flex flex-row space-x-6 items-center'>
-                                <div className='smallText'>{i+1}</div>
+                                <div className='smallText'>{i + 1}</div>
                                 <div>
                                     <div className='smallText'>{items.title}</div>
                                     <div className='text-[#737373] text-base font-sf-reg'>{items.artist}</div>
