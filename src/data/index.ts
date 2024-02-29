@@ -15,7 +15,7 @@ export const sidebarMenuData: MenuItem[] = [
     src: "/explore",
     icon: icon2,
   },
-  { title: "Library", src: "/library", icon: icon3 },
+  { title: "Library", src: "/album", icon: icon3 },
   {
     title: "Premium",
     src: "/premium",
