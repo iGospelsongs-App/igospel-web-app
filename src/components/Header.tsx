@@ -23,7 +23,7 @@ function Header() {
 
     return (
         <div>
-            <div className={`flex items-center justify-between px-2 sm:px-5 gap-2  ${(isScroll) && 'bg-black'}`}>
+            <div className={`flex items-center justify-between px-2 sm:px-5 gap-2  ${(isScroll) && 'bg-black border-b-[1px] border-b-[#323232]'}`}>
                 <div className={`flex flex-1 items-center ${isOpen && !isMobile ? 'gap-14' : 'gap-5'} `}>
                     {/* header here  */}
                     <div className={`min-w-[90px] z-10 ${!isOpen && 'bg-transparent'} text-white`}>
@@ -34,7 +34,7 @@ function Header() {
                     </div>
 
                     {/* search bar */}
-                    <div className={`flex-1 ${isMobile && 'hidden'}`}>
+                    <div className={`flex-1 ml-3 ${isMobile && 'hidden'}`}>
                         <div className='flex max-w-[300px] items-center border-[1px] border-[#98A2B3] bg-white bg-opacity-5 px-2 py-[5px] rounded-lg'>
                             <img src={searchIcon} alt="" className='w-[14px] mr-1' />
                             <input type="text" className='outline-none text-xs w-full font-sf-reg bg-transparent text-white py-1' placeholder='Search songs, albums, artists, sermons' />

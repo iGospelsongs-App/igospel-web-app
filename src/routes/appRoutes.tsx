@@ -5,6 +5,7 @@ import HomeLayout from "../layouts/HomeLayout";
 import Explore from "../pages/Explore";
 import Library from "../pages/Library";
 import Premium from "../pages/Premium";
+import Album from "../pages/Album";
 
 export const appRoutes = {
     path: "/",
@@ -33,6 +34,10 @@ export const appRoutes = {
                 {
                     path: '/premium',
                     element: <Premium />
+                },
+                {
+                    path: '/album',
+                    element: <Album />
                 }
             ]
         },

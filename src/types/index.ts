@@ -30,3 +30,9 @@ export interface SliderDisplayDataType {
     artist: string;
     image: string;
 }
+
+export interface AlbumlistDataType {
+    title: string;
+    artist: string;
+    duration: string;
+  }

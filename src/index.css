@@ -60,3 +60,9 @@ body {
     scrollbar-width: none; /* Firefox */
   }
 }
+
+@layer components {
+  .smallText {
+    @apply text-white text-base font-sf-med
+  }
+}
