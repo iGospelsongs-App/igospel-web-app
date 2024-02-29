@@ -5,8 +5,10 @@ interface SidebarType {
   isScroll: boolean;
 }
 
+const isMobile = window.innerWidth <= 768;
+
 const initialState: SidebarType = {
-  isOpen: true,
+  isOpen: !isMobile,
   isScroll: false,
 };
 
