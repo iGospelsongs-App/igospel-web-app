@@ -7,7 +7,7 @@ import { albumListData } from '../data/DummyData'
 import AlbumMenuModal from '../components/modal/AlbumMenuModal';
 
 function Album() {
-    const [showMenu, setShowMenu] = useState(true);
+    const [showMenu, setShowMenu] = useState(false);
 
     return (
         <div className=''>
