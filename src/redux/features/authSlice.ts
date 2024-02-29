@@ -12,12 +12,12 @@ export const logout = createAsyncThunk("auth/logout", async () => {
   localStorage.removeItem("igospel-user-token");
 });
 
-interface AuthContextType {
+interface AuthType {
   token: string | null;
   isAuthenticated: boolean;
 }
 
-const initialState: AuthContextType = {
+const initialState: AuthType = {
   token: "",
   isAuthenticated: false,
 };

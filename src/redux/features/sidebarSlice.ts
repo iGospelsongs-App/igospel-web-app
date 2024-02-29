@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface SidebarContextType {
+interface SidebarType {
   isOpen: boolean;
   isScroll: boolean;
 }
 
-const initialState: SidebarContextType = {
+const initialState: SidebarType = {
   isOpen: true,
   isScroll: false,
 };
