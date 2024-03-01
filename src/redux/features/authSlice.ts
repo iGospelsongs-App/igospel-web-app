@@ -1,12 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const authenticate = createAsyncThunk(
-  "auth/authenticate",
-  async (token: string) => {
-    localStorage.setItem("igospel-user-token", token);
-    return token;
-  }
-);
+export const authenticate = createAsyncThunk("auth/authenticate", async (token: string) => {
+  localStorage.setItem("igospel-user-token", token);
+  return token;
+});
 
 export const logout = createAsyncThunk("auth/logout", async () => {
   localStorage.removeItem("igospel-user-token");
@@ -28,14 +25,14 @@ const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(authenticate.fulfilled, (state, action) => {
-        state.token = action.payload;
-        state.isAuthenticated = true;
+      state.token = action.payload;
+      state.isAuthenticated = true;
     });
 
     builder.addCase(logout.fulfilled, (state) => {
-        state.token = null;
-        state.isAuthenticated = false;
-    })
+      state.token = null;
+      state.isAuthenticated = false;
+    });
   },
 });
 

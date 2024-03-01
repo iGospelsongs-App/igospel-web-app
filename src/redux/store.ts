@@ -1,13 +1,13 @@
-import {configureStore, ThunkAction, Action} from '@reduxjs/toolkit';
-import sidebarReducer from '../redux/features/sidebarSlice'
-import authReducer from '../redux/features/authSlice'
+import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import sidebarReducer from "../redux/features/sidebarSlice";
+import authReducer from "../redux/features/authSlice";
 
 const store = configureStore({
-    reducer: {
-        sidebar: sidebarReducer,
-        auth: authReducer,
-    },
-})
+  reducer: {
+    sidebar: sidebarReducer,
+    auth: authReducer,
+  },
+});
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

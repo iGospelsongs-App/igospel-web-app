@@ -1,13 +1,9 @@
 import React from "react";
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { appRoutes } from "./routes/appRoutes";
 import { authRoute } from "./routes/authRoutes";
 
-
-const router = createBrowserRouter([appRoutes, authRoute])
+const router = createBrowserRouter([appRoutes, authRoute]);
 
 function App() {
   return (

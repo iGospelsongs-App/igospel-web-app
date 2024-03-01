@@ -17,14 +17,13 @@ const sidebarSlice = createSlice({
   initialState,
   reducers: {
     setNavbarScroll: (state, action) => {
-        state.isScroll = action.payload;
+      state.isScroll = action.payload;
     },
     switchSidebar: (state) => {
-        state.isOpen = !state.isOpen
-    }
+      state.isOpen = !state.isOpen;
+    },
   },
 });
 
-export const {setNavbarScroll, switchSidebar} = sidebarSlice.actions;
+export const { setNavbarScroll, switchSidebar } = sidebarSlice.actions;
 export default sidebarSlice.reducer;
-

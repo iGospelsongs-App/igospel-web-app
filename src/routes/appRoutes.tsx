@@ -8,38 +8,38 @@ import Premium from "../pages/Premium";
 import Album from "../pages/Album";
 
 export const appRoutes = {
-    path: "/",
-    element: <PrivateRoute />,
-    children: [
+  path: "/",
+  element: <PrivateRoute />,
+  children: [
+    {
+      path: "/",
+      element: <HomeLayout />,
+      children: [
         {
-            path: "/",
-            element: <HomeLayout />,
-            children: [
-                {
-                    path: "/",
-                    element: <Home />
-                },
-                {
-                    path: '/search',
-                    element: <Search />
-                },
-                {
-                    path: '/explore',
-                    element: <Explore />
-                },
-                {
-                    path: '/library',
-                    element: <Library />
-                },
-                {
-                    path: '/premium',
-                    element: <Premium />
-                },
-                {
-                    path: '/album',
-                    element: <Album />
-                }
-            ]
+          path: "/",
+          element: <Home />,
         },
-    ]
-}
+        {
+          path: "/search",
+          element: <Search />,
+        },
+        {
+          path: "/explore",
+          element: <Explore />,
+        },
+        {
+          path: "/library",
+          element: <Library />,
+        },
+        {
+          path: "/premium",
+          element: <Premium />,
+        },
+        {
+          path: "/album",
+          element: <Album />,
+        },
+      ],
+    },
+  ],
+};

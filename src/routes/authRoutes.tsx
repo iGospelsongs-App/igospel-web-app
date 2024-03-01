@@ -7,38 +7,37 @@ import PasswordReset from "../pages/auth/passwordReset/Index";
 import ResetPasswordInput from "../pages/auth/passwordReset/Input";
 import NewPassword from "../pages/auth/passwordReset/NewPassword";
 
-
 export const authRoute = {
   path: "/auth",
   element: <PublicRoute />,
   children: [
     {
       path: "/auth/login",
-      element: <Login />
+      element: <Login />,
     },
     {
       path: "/auth/signup",
-      element: <Signup />
+      element: <Signup />,
     },
     {
       path: "/auth/verify",
-      element: <VerifySignup />
+      element: <VerifySignup />,
     },
     {
-      path: '/auth/reset_password',
-      element: <PasswordReset />
+      path: "/auth/reset_password",
+      element: <PasswordReset />,
     },
     {
-      path: '/auth/reset_password/verify',
-      element: <ResetPasswordInput />
+      path: "/auth/reset_password/verify",
+      element: <ResetPasswordInput />,
     },
     {
-      path: '/auth/reset_password/new',
-      element: <NewPassword />
+      path: "/auth/reset_password/new",
+      element: <NewPassword />,
     },
     {
-      path: '/auth/reset_password/success',
-      element: <ResetSuccess />
-    }
-  ]
-}
+      path: "/auth/reset_password/success",
+      element: <ResetSuccess />,
+    },
+  ],
+};

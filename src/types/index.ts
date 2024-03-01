@@ -1,38 +1,38 @@
 export interface SubMenuItem {
-    title: string;
-    src: string;
-    cName?: string;
+  title: string;
+  src: string;
+  cName?: string;
 }
 
 export interface MenuItem {
-    title: string;
-    src: string;
-    icon: string;
-    gap?: boolean;
-    subMenus?: SubMenuItem[];
+  title: string;
+  src: string;
+  icon: string;
+  gap?: boolean;
+  subMenus?: SubMenuItem[];
 }
 
 export interface HomeMenuType {
-    title: string;
-    img: string;
+  title: string;
+  img: string;
 }
 
 export interface TableContentType {
-    name: string;
-    date: string;
-    number: string;
-    quantity: number;
-  }
+  name: string;
+  date: string;
+  number: string;
+  quantity: number;
+}
 
 export interface SliderDisplayDataType {
-    title: string;
-    type: string;
-    artist: string;
-    image: string;
+  title: string;
+  type: string;
+  artist: string;
+  image: string;
 }
 
 export interface AlbumlistDataType {
-    title: string;
-    artist: string;
-    duration: string;
-  }
+  title: string;
+  artist: string;
+  duration: string;
+}

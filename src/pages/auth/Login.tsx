@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 import LoginComp from "../../components/LoginComp";
-import AuthPageLayout from '../../components/AuthPageLayout'
+import AuthPageLayout from "../../components/AuthPageLayout";
 
 function Login() {
   return (
