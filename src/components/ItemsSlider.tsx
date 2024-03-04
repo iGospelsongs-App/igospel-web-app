@@ -12,7 +12,7 @@ type ItemSliderProps = {
 const ItemsSlider: FunctionComponent<ItemSliderProps> = ({ title, sliderData }) => {
   const sliderRef = useRef(null);
   const scrollAmount = 300;
-  const [data, setData] = useState<SliderDisplayDataType[]>(sliderData);
+  const [data] = useState<SliderDisplayDataType[]>(sliderData);
   const [isLeftDisabled, setIsLeftDisabled] = useState(true);
   const [isRightDisabled, setIsRightDisabled] = useState(false);
 

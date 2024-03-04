@@ -1,4 +1,3 @@
-import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { sidebarMenuData } from "../../data";
 import { MenuItem } from "../../types";

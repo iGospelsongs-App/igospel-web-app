@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState } from "react";
 import logo from "../assets/images/logo.svg";
 import { FaRegEye } from "react-icons/fa6";
 import { FaRegEyeSlash } from "react-icons/fa6";
@@ -6,10 +6,10 @@ import ggle from "../assets/images/ggle.svg";
 import Footer from "./Footer";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { googleLogout, useGoogleLogin, GoogleLogin } from "@react-oauth/google";
+import { useGoogleLogin } from "@react-oauth/google";
 import { Puff } from "react-loader-spinner";
 import ErrorTextComp from "./ErrorTextComp";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { authenticate } from "../redux/features/authSlice";
 import { AppDispatch } from "../redux/store";
 
@@ -22,7 +22,7 @@ function LoginComp() {
   const [errorMessages, setErrorMessages] = useState("");
   const navigate = useNavigate();
   const [user, setUser] = useState<any>([]);
-  const [profile, setProfile] = useState<any>([]);
+  const [_, setProfile] = useState<any>([]);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
 

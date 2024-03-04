@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setNavbarScroll, switchSidebar } from "../redux/features/sidebarSlice";
+import { setNavbarScroll, switchSidebar } from "../redux/features/sidebarSlice.ts";
 import searchIcon from "../assets/images/search.svg";
 import notifIcon from "../assets/images/notif.svg";
 import dp from "../assets/images/dp.svg";
@@ -30,7 +30,7 @@ function Header() {
           {/* header here  */}
           <div className={`min-w-[90px] z-10 ${!isOpen && "bg-transparent"} text-white`}>
             <div className="pt-5 pb-[28px] flex items-center space-x-3">
-              <div role="presentation" onClick={handleOpenSidebar}>
+              <div onClick={handleOpenSidebar} role="presentation">
                 <img src={hamburger} alt="" className="w-[27px] h-[27px] cursor-pointer" />
               </div>
               <img src={Logo} alt="" className="w-[110px]" />
