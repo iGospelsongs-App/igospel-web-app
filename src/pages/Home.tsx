@@ -9,7 +9,7 @@ function Home() {
   const dispatch = useDispatch<AppDispatch>();
 
   return (
-    <div className="text-white h-[800px]">
+    <div className="text-white">
       <ItemsSlider title="Recommended albums" sliderData={sliderDisplayData} />
       <br />
       <br />
