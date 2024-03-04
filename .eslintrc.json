@@ -8,5 +8,8 @@
     "eslint:recommended",
     // "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended"
-  ]
+  ],
+  "rules": {
+    "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }]
+  }
 }

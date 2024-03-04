@@ -1,11 +1,11 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setNavbarScroll, switchSidebar } from "../redux/features/sidebarSlice";
 import searchIcon from "../assets/images/search.svg";
 import notifIcon from "../assets/images/notif.svg";
 import dp from "../assets/images/dp.svg";
 import hamburger from "../assets/images/hamburger.svg";
 import Logo from "../assets/images/logo.svg";
-import { useSelector, useDispatch } from "react-redux";
-import { setNavbarScroll, switchSidebar } from "../redux/features/sidebarSlice";
 
 function Header() {
   const isMobile = window.innerWidth <= 768;
@@ -29,14 +29,11 @@ function Header() {
         <div className={`flex flex-1 items-center ${isOpen && !isMobile ? "gap-14" : "gap-5"} `}>
           {/* header here  */}
           <div className={`min-w-[90px] z-10 ${!isOpen && "bg-transparent"} text-white`}>
-            <div className={`pt-5 pb-[28px] flex items-center space-x-3`}>
-              <img
-                src={hamburger}
-                alt=""
-                className={`w-[27px] h-[27px] cursor-pointer`}
-                onClick={handleOpenSidebar}
-              />
-              <img src={Logo} alt="" className={`w-[110px]`} />
+            <div className="pt-5 pb-[28px] flex items-center space-x-3">
+              <div role="presentation" onClick={handleOpenSidebar}>
+                <img src={hamburger} alt="" className="w-[27px] h-[27px] cursor-pointer" />
+              </div>
+              <img src={Logo} alt="" className="w-[110px]" />
             </div>
           </div>
 
