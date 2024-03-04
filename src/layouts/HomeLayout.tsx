@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import { useSelector } from "react-redux";
 import Sidebar from "../components/sidebar/Sidebar";
 import SidebarClosed from "../components/sidebar/SidebarClosed";
+import PlayComp from "../components/play/PlayComp";
 
 function HomeLayout() {
   const isMobile = window.innerWidth <= 768;
@@ -12,7 +13,11 @@ function HomeLayout() {
   const { isOpen, isScroll } = useSelector((state: any) => state.sidebar);
 
   return (
-    <div className="bg-gradient-to-br from-[#291317] via-transparent to-black">
+    <div className="bg-gradient-to-br from-[#291317] via-transparent to-black pb-[90px] relative">
+      <div className="fixed right-0 w-full bottom-0 z-10">
+        <PlayComp />
+      </div>
+      
       <div>
         {/* header  */}
         <div className="fixed right-0 w-full top-0 z-10">

@@ -65,3 +65,35 @@ body {
     @apply text-white text-base font-sf-med;
   }
 }
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 400px;
+  height: 6px;
+  background-color: #505050;
+  border-radius: 7px;
+  outline: none;
+  @apply drop-shadow-lg;
+}
+
+.slider2 {
+  width: 100px;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
+  @apply drop-shadow-lg;
+}
+
+.slider::-moz-range-thumb {
+  height: 19px;
+  width: 19px;
+  background-color: white;
+  border-radius: 100%;
+  border: #505050 1px solid;
+  cursor: pointer;
+  @apply drop-shadow-lg;
+}
