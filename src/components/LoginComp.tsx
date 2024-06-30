@@ -108,7 +108,7 @@ function LoginComp() {
     } catch (error: any) {
       setLoading(false);
       console.log(error.response.data.Error[0]);
-      setErrorMessages(error.response.data.Error[0]);
+      setErrorMessages(error.response.data.message);
     }
   };
 
