@@ -37,7 +37,7 @@ function SignupComp() {
   const navigate = useNavigate();
 
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const URL = "https://igospelsongs.onrender.com/user/signup/";
+  const URL = "https://api.igospel.com.ng/dev/auth/auth/signup/";
 
   const fieldsValidation = () => {
     let isEmailValid = true;
