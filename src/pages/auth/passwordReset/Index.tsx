@@ -16,7 +16,7 @@ function PasswordReset() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const URL = "https://igospelsongs.onrender.com/user/reset_password/";
+  const URL = "https://api.igospel.com.ng/dev/auth/auth/forgot_password/";
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const fieldValidation = () => {
@@ -49,7 +49,7 @@ function PasswordReset() {
       navigate("/auth/reset_password/verify");
     } catch (error: any) {
       setLoading(false);
-      setErrorMessages(error.response.data.error);
+      setErrorMessages(error.response.data.message);
       console.log(error);
     }
   };
