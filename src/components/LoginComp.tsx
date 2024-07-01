@@ -80,7 +80,7 @@ function LoginComp() {
     onError: (error) => console.log("Login Failed:", error),
   });
 
-  const URL = "https://igospelsongs.onrender.com/user/signin/";
+  const URL = "https://api.igospel.com.ng/dev/auth/auth/signin/";
 
   const handleEmail = (e: any) => {
     setEmail(e.target.value);
