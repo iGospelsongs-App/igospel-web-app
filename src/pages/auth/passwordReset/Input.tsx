@@ -16,7 +16,7 @@ function ResetPasswordInput() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const URL = "https://igospelsongs.onrender.com/user/verify_otp/";
+  const URL = "https://api.igospel.com.ng/dev/auth/verify_otp/";
 
   //TODO: remove this and make sure they fix the error respnse from the backend
   const ERROR_MESSAGE = "Request failed with status code 500";
@@ -33,7 +33,7 @@ function ResetPasswordInput() {
   const handlePostRequest = async () => {
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const response = await axios.post(URL, { UserOTP: otp });
+      const response = await axios.post(URL, { otp: otp });
       localStorage.setItem("reset_otp", otp);
       setLoading(false);
       setOtp("");
