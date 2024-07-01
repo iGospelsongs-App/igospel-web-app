@@ -11,7 +11,7 @@ import { Puff } from "react-loader-spinner";
 
 export interface SignupType {
   cover_image: any;
-  image: any;
+  profile_image: any;
   fullname: string;
   email: string;
   username: string;
@@ -110,7 +110,7 @@ function SignupComp() {
 
   const formValue = {
     cover_image: null,
-    image: null,
+    profile_image: null,
     full_name: fullname,
     email,
     username,
