@@ -25,7 +25,8 @@ function NewPassword() {
     setResetOtp(otp);
   }, []);
 
-  const URL = "https://igospelsongs.onrender.com/user/set_password/int:" + resetOtp + "/";
+  // const URL = "https://igospelsongs.onrender.com/user/set_password/int:" + resetOtp + "/";
+  const URL = "https://api.igospel.com.ng/dev/auth/set_password/?otp=resetOtp
 
   const fieldsValidation = () => {
     let isPasswordValid = true;
