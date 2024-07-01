@@ -1,6 +1,7 @@
 import React from "react";
 import bg from "../../../assets/images/grad2.svg";
 import Footer from "../../../components/Footer";
+import { Link, useNavigate } from 'react-router-dom';
 
 function ResetSuccess() {
   return (
@@ -14,7 +15,8 @@ function ResetSuccess() {
             Your new password has been set, click "proceed" to log in
           </div>
           <div className="bg-white px-24 py-2 rounded text-black font-sf-bold text-base mt-5">
-            Proceed
+            
+            <Link to='/auth/login'> Proceed</Link>
           </div>
         </div>
         <div className="w-full absolute bottom-[-10%]">

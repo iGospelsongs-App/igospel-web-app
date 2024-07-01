@@ -18,9 +18,6 @@ function ResetPasswordInput() {
 
   const URL = "https://api.igospel.com.ng/dev/auth/verify_otp/";
 
-  //TODO: remove this and make sure they fix the error respnse from the backend
-  const ERROR_MESSAGE = "Request failed with status code 500";
-
   useEffect(() => {
     if (otp.length === 4) {
       setInputFill(true);
@@ -32,7 +29,6 @@ function ResetPasswordInput() {
 
   const handlePostRequest = async () => {
     try {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const response = await axios.post(URL, { otp: otp });
       localStorage.setItem("reset_otp", otp);
       setLoading(false);
@@ -41,8 +37,10 @@ function ResetPasswordInput() {
     } catch (error: any) {
       console.log("ERROR SAYS", error);
       setLoading(false);
-      if (error.message === ERROR_MESSAGE) {
-        setError("Incorrect Pin");
+      if (error.response && error.response.data && error.response.data.detail) {
+        setError(error.response.data.detail); // Set the error message from the backend
+      } else {
+        setError("Invalid pin. Please try again.");
       }
     }
   };
@@ -102,7 +100,7 @@ function ResetPasswordInput() {
                     )}
                   />
                 </div>
-                <div className="my-2">
+                <div className="my-0">
                   <ErrorTextComp errorCondition={error} />
                 </div>
 

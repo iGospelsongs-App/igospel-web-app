@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import AuthPageLayout from '../../../components/AuthPageLayout';
 import Footer from '../../../components/Footer';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../../assets/images/logo.svg';
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import axios from 'axios';
@@ -18,12 +18,12 @@ function NewPassword() {
     const [resetOtp, setResetOtp] = useState<string | null>('');
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         const otp = localStorage.getItem('reset_otp');
         setResetOtp(otp);
     }, []);
-
 
     const URL = `https://api.igospel.com.ng/dev/auth/set_password/${resetOtp}/`;
 
@@ -71,8 +71,14 @@ function NewPassword() {
             setLoading(false);
             setPassword('');
             setConfirm('');
+            setErrorMessage("Success, You've reset your password successfully");
+            setTimeout(() => {
+                navigate('/auth/reset_password/success');
+            }, 2000); // Navigate to login page after 2 seconds
         } catch (error: any) {
             console.error("ERROR SAYS", error);
+            setErrorMessage("Failed");
+
             setLoading(false);
             if (error.response && error.response.data && error.response.data.detail) {
                 setErrorMessage(error.response.data.detail);
@@ -125,6 +131,13 @@ function NewPassword() {
                                             </div>
                                             <ErrorTextComp errorCondition={confirmError} />
                                         </div>
+
+                                        {/* Display error or success message */}
+                                        {errorMessage && (
+                                            <div className='text-white font-sf-reg text-xs mb-4'>
+                                                {errorMessage}
+                                            </div>
+                                        )}
 
                                         {/* button here */}
                                         <button onClick={handleSubmit} type="submit" className='w-full h-10 bg-[#FF375F] text-white font-sf-med text-sm rounded-md flex flex-row items-center justify-center'>
