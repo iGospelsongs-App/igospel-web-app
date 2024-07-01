@@ -24,6 +24,7 @@ function NewPassword() {
         setResetOtp(otp);
     }, []);
 
+
     const URL = `https://api.igospel.com.ng/dev/auth/set_password/${resetOtp}/`;
 
     const fieldsValidation = () => {
