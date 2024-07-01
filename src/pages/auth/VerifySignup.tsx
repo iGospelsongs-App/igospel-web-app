@@ -16,7 +16,7 @@ function VerifySignup() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const URL = "https://igospelsongs.onrender.com/user/verify_email/";
+  const URL = "https://api.igospel.com.ng/dev/auth/activate_account/";
 
   //TODO: remove this and make sure they fix the error respnse from the backend
   const ERROR_MESSAGE = "Request failed with status code 500";
