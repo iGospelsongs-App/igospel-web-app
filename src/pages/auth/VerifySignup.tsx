@@ -33,7 +33,7 @@ function VerifySignup() {
   const handlePostRequest = async () => {
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const response = await axios.post(URL, { UserOTP: otp });
+      const response = await axios.post(URL, { otp: otp });
       setLoading(false);
       setOtp("");
       navigate("/auth/login");
