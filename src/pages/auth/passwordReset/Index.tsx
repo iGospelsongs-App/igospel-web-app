@@ -16,7 +16,7 @@ function PasswordReset() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const URL = "https://api.igospel.com.ng/dev/auth/auth/forgot_password/";
+  const URL = "https://api.igospel.com.ng/dev/auth/forgot_password/";
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const fieldValidation = () => {
