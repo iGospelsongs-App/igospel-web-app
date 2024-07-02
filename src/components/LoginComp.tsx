@@ -204,7 +204,7 @@ function LoginComp() {
                 </Link>
               </div>
 
-              <div className="my-7 text-center text-[#ffffffa0] text-sm sf-pro-med">Or</div>
+              <div className="my-6 text-center text-[#ffffffa0] text-sm sf-pro-med">Or</div>
 
               {/* login with google button */}
               <div
