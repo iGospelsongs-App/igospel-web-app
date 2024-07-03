@@ -8,6 +8,12 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ErrorTextComp from "./ErrorTextComp";
 import { Puff } from "react-loader-spinner";
+import Login from "../pages/auth/Login";
+import { useDispatch } from "react-redux";
+import { useGoogleLogin } from "@react-oauth/google";
+import { AppDispatch } from "../redux/store";
+
+import { authenticate } from "../redux/features/authSlice";
 
 export interface SignupType {
   cover_image: any;
@@ -30,11 +36,16 @@ function SignupComp() {
   const [usernameError, setUsernameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [emailErrorB, setEmailErrorB] = useState("");
+  const [_, setProfile] = useState<any>([]);
   const [passwordError, setPasswordError] = useState("");
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [agreementChecked, setAgreementChecked] = useState(false);
   const [newsCheck, setNewsCheck] = useState(false);
+  const [user, setUser] = useState<any>([]);
+
+  const dispatch = useDispatch<AppDispatch>();
+
   const navigate = useNavigate();
 
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -154,6 +165,28 @@ function SignupComp() {
       }
     }
   };
+  const login = useGoogleLogin({
+    onSuccess: (codeResponse) => {
+      setUser(codeResponse);
+      dispatch(authenticate(codeResponse.access_token));
+      navigate("/");
+      if (codeResponse) {
+        axios
+          .get("https://api.igospel.com.ng/accounts/google/login/", {
+            headers: {
+              Authorization: `Bearer ${user.access_token}`,
+              Accept: "application/json",
+            },
+          })
+          .then((res) => {
+            setProfile(res.data);
+          })
+          .catch((err) => console.log("ERROR IS", err));
+      }
+      console.log(codeResponse.access_token);
+    },
+    onError: (error) => console.log("Login Failed:", error),
+  });
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -179,7 +212,10 @@ function SignupComp() {
 
               <form>
                 {/* login with google button */}
-                <div className="w-full h-10 mt-10 bg-white flex flex-row justify-around items-center rounded-md">
+                <div
+                  className="cursor-pointer w-full h-10 mt-10 bg-white flex flex-row justify-around items-center rounded-md"
+                  onClick={() => login()}
+                >
                   <div>
                     <img src={ggle} alt="" />
                   </div>
