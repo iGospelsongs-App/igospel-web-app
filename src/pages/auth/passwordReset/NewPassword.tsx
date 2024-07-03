@@ -71,12 +71,8 @@ function NewPassword() {
       setLoading(false);
       setPassword("");
       setConfirm("");
-      setErrorMessage("Success, You've reset your password successfully");
-      setTimeout(() => {
-        navigate("/auth/reset_password/success");
-      }, 2000); // Navigate to login page after 2 seconds
+      navigate("/auth/reset_password/success");
     } catch (error: any) {
-      console.log(error);
       setLoading(false);
       if (error.message === "Network Errror") {
         setErrorMessage("Network Error");
