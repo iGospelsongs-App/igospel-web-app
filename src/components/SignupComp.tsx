@@ -130,9 +130,13 @@ function SignupComp() {
       setPassword("");
       navigate("/auth/verify");
     } catch (error: any) {
-      if (error.response.data.error === "Email Exist") setEmailError("Email already exist");
+      console.log(error);
       setLoading(false);
-      setErrorMessage(error.response.data.error);
+      if (error.message === "Network Error") {
+        setErrorMessage("Network Error");
+      } else {
+        setErrorMessage(error?.response?.data?.message);
+      }
     }
   };
 
@@ -276,6 +280,9 @@ function SignupComp() {
                     Sign up for the latest updates, news, and more about your preferred artists. Be
                     among the first to receive exclusive content.
                   </div>
+                </div>
+                <div className="mb-3">
+                  <ErrorTextComp errorCondition={errorMessage} />
                 </div>
 
                 {/* button here */}

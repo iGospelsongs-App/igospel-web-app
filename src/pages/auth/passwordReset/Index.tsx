@@ -49,8 +49,11 @@ function PasswordReset() {
       navigate("/auth/reset_password/verify");
     } catch (error: any) {
       setLoading(false);
-      setErrorMessages(error.response.data.message);
-      console.log(error);
+      if (error.message === "Network Error") {
+        setErrorMessages(error.message);
+      } else {
+        setErrorMessages(error?.response?.data?.message);
+      }
     }
   };
 
