@@ -31,8 +31,17 @@ export interface SliderDisplayDataType {
   image: string;
 }
 
+export interface SermaonlistDataType {
+  title: string;
+  type: string;
+  artist: string;
+  image: string;
+}
+
 export interface AlbumlistDataType {
   title: string;
   artist: string;
   duration: string;
 }
+
+
