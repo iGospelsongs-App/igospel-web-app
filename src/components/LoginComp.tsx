@@ -64,7 +64,7 @@ function LoginComp() {
       navigate("/");
       if (codeResponse) {
         axios
-          .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
+          .get("https://api.igospel.com.ng/accounts/google/login/", {
             headers: {
               Authorization: `Bearer ${user.access_token}`,
               Accept: "application/json",
@@ -104,9 +104,7 @@ function LoginComp() {
       setEmail("");
       setPassword("");
       navigate("/");
-      console.log(response);
     } catch (error: any) {
-      console.log(error);
       setLoading(false);
       if (error.message === "Network Error") {
         setErrorMessages(error.message);
@@ -213,7 +211,7 @@ function LoginComp() {
               {/* login with google button */}
               <div
                 onClick={() => login()}
-                className="w-full h-10 bg-white flex flex-row justify-around items-center rounded-md"
+                className="w-full h-10 bg-white flex flex-row justify-around items-center rounded-md cursor-pointer"
               >
                 <div>
                   <img src={ggle} alt="" />

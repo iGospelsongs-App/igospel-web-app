@@ -29,6 +29,7 @@ function SignupComp() {
   const [fullnameError, setFullnameError] = useState("");
   const [usernameError, setUsernameError] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [emailErrorB, setEmailErrorB] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -130,12 +131,26 @@ function SignupComp() {
       setPassword("");
       navigate("/auth/verify");
     } catch (error: any) {
-      console.log(error);
       setLoading(false);
-      if (error.message === "Network Error") {
-        setErrorMessage("Network Error");
+
+      if (error.response?.data?.message) {
+        const errorMessage = error.response.data.message;
+
+        switch (errorMessage) {
+          case "Email exists.":
+            setEmailError("Email exists.");
+            break;
+          case "Invalid email.":
+            setEmailError("Invalid email");
+            break;
+          case "Username exists.":
+            setUsernameError("Username exists");
+            break;
+          default:
+            setErrorMessage(errorMessage);
+        }
       } else {
-        setErrorMessage(error?.response?.data?.message);
+        setErrorMessage("An unknown error occurred");
       }
     }
   };
@@ -217,6 +232,7 @@ function SignupComp() {
                     placeholder="Enter your email"
                   />
                   <ErrorTextComp errorCondition={emailError} />
+                  <ErrorTextComp errorCondition={emailErrorB} />
                 </div>
 
                 {/* password input  */}
