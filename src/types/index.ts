@@ -9,6 +9,7 @@ export interface MenuItem {
   src: string;
   icon: string;
   gap?: boolean;
+  iconP: string;
   subMenus?: SubMenuItem[];
 }
 

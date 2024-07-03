@@ -1,8 +1,5 @@
-//created this scroll slider with reference from https://dev.to/aneeqakhan/building-an-image-slider-with-smooth-scrolling-using-react-1jdb
-
-import React, { FunctionComponent, useEffect, useRef, useState } from "react";
+import React, { FunctionComponent, useRef, useState, useEffect } from "react";
 import { SermaonlistDataType } from "../types";
-import { ArrowLeftCircleIcon, ArrowRightCircleIcon } from "@heroicons/react/24/outline";
 
 type ItemSliderProps = {
   title: string;
@@ -10,65 +7,31 @@ type ItemSliderProps = {
 };
 
 const ItemsSliderSermon: FunctionComponent<ItemSliderProps> = ({ title, sliderData }) => {
-  const sliderRef = useRef(null);
-  const scrollAmount = 300;
+  const sliderRef = useRef<HTMLDivElement>(null);
   const [data] = useState<SermaonlistDataType[]>(sliderData);
-  const [isLeftDisabled, setIsLeftDisabled] = useState(true);
-  const [isRightDisabled, setIsRightDisabled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const container = sliderRef.current as HTMLElement | null;
+      const container = sliderRef.current;
       if (container) {
-        setIsLeftDisabled(container.scrollLeft === 0);
-        setIsRightDisabled(container.scrollLeft >= container.scrollWidth - container.clientWidth);
+        // You can add any scroll-related logic here if needed.
       }
     };
 
-    const container = sliderRef.current as HTMLElement | null;
+    const container = sliderRef.current;
     if (container) {
       container.addEventListener("scroll", handleScroll);
       return () => container.removeEventListener("scroll", handleScroll);
     }
   }, []);
 
-  const leftScroll = () => {
-    const container = sliderRef.current as HTMLElement | null;
-    if (container) {
-      container.scrollLeft -= scrollAmount;
-    }
-  };
-
-  const rightScroll = () => {
-    const container = sliderRef.current as HTMLElement | null;
-    if (container) {
-      container.scrollLeft += scrollAmount;
-    }
-  };
-
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-x-hidden ">
       <div className="flex items-center justify-between mb-4">
         <div className="font-sf-bold text-base sm:text-xl">{title}</div>
-
-        <div className="flex items-center space-x-2 sm:space-x-3">
-          <div className="text-[10px] sm:text-sm font-sf-reg border-[1px] border-white rounded-xl px-2 sm:px-3 py-[1px] sm:py-[2px] cursor-pointer">
-            More
-          </div>
-          <div className="flex items-center gap-2">
-            <ArrowLeftCircleIcon
-              onClick={leftScroll}
-              className={`${isLeftDisabled ? "text-gray-500" : "text-white"} w-8 sm:w-10 h-8 sm:h-10 cursor-pointer`}
-            />
-            <ArrowRightCircleIcon
-              onClick={rightScroll}
-              className={`${isRightDisabled ? "text-gray-500" : "text-white"} w-8 sm:w-10 h-8 sm:h-10 cursor-pointer`}
-            />
-          </div>
-        </div>
+    
       </div>
 
-      {/* slider here */}
       <div className="">
         <div
           ref={sliderRef}

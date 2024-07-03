@@ -20,7 +20,7 @@ function HomeLayout() {
       
       <div>
         {/* header  */}
-        <div className="fixed right-0 w-full top-0 z-10">
+        <div className="fixed right-0 w-full px-[2rem] top-0 z-10">
           <Header />
         </div>
 
@@ -34,7 +34,7 @@ function HomeLayout() {
 
           {/* outlet here  */}
           <div
-            className={`px-3 sm:px-5 pt-[100px] ${isSmallScreen ? "ml-0" : !isOpen && !isMobile ? "ml-[180px]" : !isOpen && isMobile ? "ml-[90px]" : isOpen && !isMobile ? "ml-[220px] " : "ml-[90px]"}`}
+            className={`px-3 sm:px-[6rem] pt-[100px] ${isSmallScreen ? "ml-0" : !isOpen && !isMobile ? "ml-[180px]" : !isOpen && isMobile ? "ml-[90px]" : isOpen && !isMobile ? "ml-[220px] " : "ml-[90px]"}`}
           >
             <Outlet />
           </div>
