@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import logo from "../assets/images/logo.svg";
 import { FaRegEye } from "react-icons/fa6";
 import { FaRegEyeSlash } from "react-icons/fa6";
@@ -106,9 +106,13 @@ function LoginComp() {
       navigate("/");
       console.log(response);
     } catch (error: any) {
+      console.log(error);
       setLoading(false);
-      console.log(error.response.data.Error[0]);
-      setErrorMessages(error.response.data.message);
+      if (error.message === "Network Error") {
+        setErrorMessages(error.message);
+      } else {
+        setErrorMessages(error?.response?.data?.message);
+      }
     }
   };
 

@@ -35,12 +35,12 @@ function ResetPasswordInput() {
       setOtp("");
       navigate("/auth/reset_password/new");
     } catch (error: any) {
-      console.log("ERROR SAYS", error);
+      console.log(error);
       setLoading(false);
-      if (error.response && error.response.data && error.response.data.detail) {
-        setError(error.response.data.detail); // Set the error message from the backend
+      if (error.message === "Network Error") {
+        setError(error.message);
       } else {
-        setError("Invalid pin. Please try again.");
+        setError(error?.response?.data?.message);
       }
     }
   };
@@ -100,7 +100,7 @@ function ResetPasswordInput() {
                     )}
                   />
                 </div>
-                <div className="my-0">
+                <div className="mb-3">
                   <ErrorTextComp errorCondition={error} />
                 </div>
 

@@ -38,10 +38,14 @@ function VerifySignup() {
       setOtp("");
       navigate("/auth/login");
     } catch (error: any) {
-      console.log("ERROR SAYS", error);
+      console.log(error);
       setLoading(false);
       if (error.message === ERROR_MESSAGE) {
         setError("Incorrect Pin");
+      } else if (error.message === "Network Error") {
+        setError("Network Error");
+      } else {
+        setError(error?.response?.data?.message);
       }
     }
   };
