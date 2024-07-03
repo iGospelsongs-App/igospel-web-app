@@ -6,7 +6,7 @@ import img5 from "../assets/images/carousel5.png";
 import img6 from "../assets/images/carousel6.png";
 import img7 from "../assets/images/carousel7.png";
 import img8 from "../assets/images/carousel8.png";
-import { SliderDisplayDataType, AlbumlistDataType } from "../types";
+import { SliderDisplayDataType, AlbumlistDataType, SermaonlistDataType } from "../types";
 import m1 from "../assets/images/m1.svg";
 import m2 from "../assets/images/m2.svg";
 import m3 from "../assets/images/m3.svg";
@@ -14,6 +14,12 @@ import m4 from "../assets/images/m4.svg";
 import m5 from "../assets/images/m5.svg";
 import m6 from "../assets/images/m6.svg";
 import m7 from "../assets/images/m7.svg";
+import s1 from "../assets/images/sermon1.jpeg";
+import s2 from "../assets/images/sermon2.png";
+import s3 from "../assets/images/sermon3.jpeg";
+import s4 from "../assets/images/sermon4.jpeg";
+import s5 from "../assets/images/sermon5.jpeg";
+import s6 from "../assets/images/sermon6.jpeg";
 
 export const sliderDisplayData: SliderDisplayDataType[] = [
   {
@@ -138,4 +144,56 @@ export const albumMenuModalData = [
     title: "Share",
     icon: m7,
   },
+];
+
+export const Sermon: SermaonlistDataType[] = [
+  {
+    title: "The secret place (live)",
+    type: "Album",
+    artist: "1spirit & Theophilus Sunday",
+    image: s1,
+  },
+  {
+    title: "The secret place (live)",
+    type: "Album",
+    artist: "1spirit & Theophilus Sunday",
+    image: s2,
+  },
+  {
+    title: "The secret place (live)",
+    type: "Album",
+    artist: "1spirit & Theophilus Sunday",
+    image: s3,
+  },
+  {
+    title: "The secret place (live)",
+    type: "Album",
+    artist: "1spirit & Theophilus Sunday",
+    image: s4,
+  },
+  {
+    title: "The secret place (live)",
+    type: "Album",
+    artist: "1spirit & Theophilus Sunday",
+    image: img2,
+  },
+  {
+    title: "The secret place (live)",
+    type: "Album",
+    artist: "1spirit & Theophilus Sunday",
+    image: s5,
+  },
+  {
+    title: "The secret place (live)",
+    type: "Album",
+    artist: "1spirit & Theophilus Sunday",
+    image: s6,
+  },
+  {
+    title: "The secret place (live)",
+    type: "Album",
+    artist: "1spirit & Theophilus Sunday",
+    image: img1,
+  },
+
 ];

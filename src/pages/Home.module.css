@@ -1,0 +1,6 @@
+.slidersContainer {
+    display: grid;
+    grid-template-columns: repeat(1, 2fr);
+    gap: 20px;
+  }
+  

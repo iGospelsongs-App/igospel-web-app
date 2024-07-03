@@ -20,7 +20,7 @@ function Sidebar() {
   };
 
   return (
-    <div className="pt-20 w-[220px]">
+    <div className="pt-20 w-[220px] flex">
       <ul className="">
         {sidebarMenuData.map((item: MenuItem, i: number) => (
           <>
@@ -49,7 +49,7 @@ function Sidebar() {
               </NavLink>
             )}
             {item.subMenus && submenuStates[i] && (
-              <ul key={i}>
+              <ul key={i}> 
                 {item.subMenus.map((subItem: SubMenuItem, i: number) => (
                   <li
                     key={i}
