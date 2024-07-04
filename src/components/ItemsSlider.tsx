@@ -2,7 +2,7 @@
 
 import React, { FunctionComponent, useEffect, useRef, useState } from "react";
 import { SliderDisplayDataType } from "../types";
-import { ArrowLeftCircleIcon, ArrowRightCircleIcon } from "@heroicons/react/24/outline";
+// import { ArrowLeftCircleIcon, ArrowRightCircleIcon } from "@heroicons/react/24/outline";
 
 type ItemSliderProps = {
   title: string;
@@ -13,15 +13,15 @@ const ItemsSlider: FunctionComponent<ItemSliderProps> = ({ title, sliderData }) 
   const sliderRef = useRef(null);
   const scrollAmount = 300;
   const [data] = useState<SliderDisplayDataType[]>(sliderData);
-  const [isLeftDisabled, setIsLeftDisabled] = useState(true);
-  const [isRightDisabled, setIsRightDisabled] = useState(false);
+  // const [isLeftDisabled, setIsLeftDisabled] = useState(true);
+  // const [isRightDisabled, setIsRightDisabled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const container = sliderRef.current as HTMLElement | null;
       if (container) {
-        setIsLeftDisabled(container.scrollLeft === 0);
-        setIsRightDisabled(container.scrollLeft >= container.scrollWidth - container.clientWidth);
+        // setIsLeftDisabled(container.scrollLeft === 0);
+        // setIsRightDisabled(container.scrollLeft >= container.scrollWidth - container.clientWidth);
       }
     };
 
@@ -32,19 +32,19 @@ const ItemsSlider: FunctionComponent<ItemSliderProps> = ({ title, sliderData }) 
     }
   }, []);
 
-  const leftScroll = () => {
-    const container = sliderRef.current as HTMLElement | null;
-    if (container) {
-      container.scrollLeft -= scrollAmount;
-    }
-  };
+  // const leftScroll = () => {
+  //   const container = sliderRef.current as HTMLElement | null;
+  //   if (container) {
+  //     container.scrollLeft -= scrollAmount;
+  //   }
+  // };
 
-  const rightScroll = () => {
-    const container = sliderRef.current as HTMLElement | null;
-    if (container) {
-      container.scrollLeft += scrollAmount;
-    }
-  };
+  // const rightScroll = () => {
+  //   const container = sliderRef.current as HTMLElement | null;
+  //   if (container) {
+  //     container.scrollLeft += scrollAmount;
+  //   }
+  // };
 
   return (
     <div className="overflow-x-hidden">
@@ -52,10 +52,8 @@ const ItemsSlider: FunctionComponent<ItemSliderProps> = ({ title, sliderData }) 
         <div className="font-sf-bold text-base sm:text-xl">{title}</div>
 
         <div className="flex items-center space-x-2 sm:space-x-3">
-          <div className="text-[10px] sm:text-sm font-sf-reg border-[1px] border-white rounded-xl px-2 sm:px-3 py-[1px] sm:py-[2px] cursor-pointer">
-            More
-          </div>
-          <div className="flex items-center gap-2">
+      
+          {/* <div className="flex items-center gap-2">
             <ArrowLeftCircleIcon
               onClick={leftScroll}
               className={`${isLeftDisabled ? "text-gray-500" : "text-white"} w-8 sm:w-10 h-8 sm:h-10 cursor-pointer`}
@@ -64,7 +62,7 @@ const ItemsSlider: FunctionComponent<ItemSliderProps> = ({ title, sliderData }) 
               onClick={rightScroll}
               className={`${isRightDisabled ? "text-gray-500" : "text-white"} w-8 sm:w-10 h-8 sm:h-10 cursor-pointer`}
             />
-          </div>
+          </div> */}
         </div>
       </div>
 

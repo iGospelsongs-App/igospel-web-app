@@ -14,12 +14,12 @@ import m4 from "../assets/images/m4.svg";
 import m5 from "../assets/images/m5.svg";
 import m6 from "../assets/images/m6.svg";
 import m7 from "../assets/images/m7.svg";
-import s1 from "../assets/images/sermon1.jpeg";
+import s1 from "../assets/images/sermon1.png";
 import s2 from "../assets/images/sermon2.png";
-import s3 from "../assets/images/sermon3.jpeg";
-import s4 from "../assets/images/sermon4.jpeg";
-import s5 from "../assets/images/sermon5.jpeg";
-import s6 from "../assets/images/sermon6.jpeg";
+import s3 from "../assets/images/sermon3.png";
+import s4 from "../assets/images/sermon4.png";
+import s5 from "../assets/images/sermon5.png";
+import s6 from "../assets/images/sermon6.png";
 
 export const sliderDisplayData: SliderDisplayDataType[] = [
   {

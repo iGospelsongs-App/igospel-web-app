@@ -14,6 +14,7 @@ export const sidebarMenuData: MenuItem[] = [
     title: "Home",
     src: "/",
     icon: icon1,
+
   },
   {
     title: "Explore",
@@ -30,6 +31,7 @@ export const sidebarMenuData: MenuItem[] = [
     title: "Your Playlist",
     src: "/playlist",
     icon: icon5,
+    iconP: icon6,
   },
   {
     title: "Creator",

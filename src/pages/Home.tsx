@@ -14,8 +14,8 @@ function Home() {
   return (
     <div className="text-white">
       <div className={styles.slidersContainer}>
-        <ItemsSlider title="Recommended albums 1" sliderData={sliderDisplayData} />
-        <ItemsSlider title="Recommended albums 2" sliderData={sliderDisplayData} />
+        <ItemsSlider title="Recommended albums" sliderData={sliderDisplayData} />
+        <ItemsSlider title="" sliderData={sliderDisplayData} />
       </div>
       <br />
       <div className={styles.slidersContainer}>
