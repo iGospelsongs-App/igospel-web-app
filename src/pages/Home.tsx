@@ -1,5 +1,6 @@
 import React from "react";
 import ItemsSlider from "../components/ItemsSlider";
+import Explore from "./Explore";
 import ItemsSliderSermon from "../components/ItemSlidesSermon";
 import { useDispatch } from "react-redux";
 import { logout } from "../redux/features/authSlice";
@@ -20,6 +21,7 @@ function Home() {
       <br />
       <div className={styles.slidersContainer}>
         <ItemsSliderSermon title="Sermons" sliderData={Sermon} />
+        {/* <Explore title="Sermons" sliderData={Sermon} /> */}
       </div>
       <br />
       {/* <button onClick={() => dispatch(logout())}>logout</button> */}
