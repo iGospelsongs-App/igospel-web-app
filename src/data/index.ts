@@ -14,18 +14,23 @@ export const sidebarMenuData: MenuItem[] = [
     title: "Home",
     src: "/",
     icon: icon1,
-
+    iconP: ""
   },
   {
     title: "Explore",
     src: "/explore",
     icon: icon2,
+    iconP: ""
   },
-  { title: "Library", src: "/album", icon: icon3 },
+  {
+    title: "Library", src: "/album", icon: icon3,
+    iconP: ""
+  },
   {
     title: "Premium",
     src: "/premium",
     icon: icon4,
+    iconP: ""
   },
   {
     title: "Your Playlist",
@@ -37,5 +42,6 @@ export const sidebarMenuData: MenuItem[] = [
     title: "Creator",
     src: "/creator",
     icon: icon7,
+    iconP: ""
   },
 ];

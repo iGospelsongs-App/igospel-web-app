@@ -45,4 +45,18 @@ export interface AlbumlistDataType {
   duration: string;
 }
 
+export interface ExploreData {
+  img: string;
+}
+export interface ExploreData2 {
+  img: string;
+}
+
+export interface Ministration {
+  img: string;
+  title: string;
+
+}
+
+
 
